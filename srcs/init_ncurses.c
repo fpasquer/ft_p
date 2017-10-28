@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_ncurses.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/28 17:49:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/28 17:51:38 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/10/28 17:25:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/server.h"
+#include "../incs/general.h"
 
-int							main(int argc, char **argv)
+void						init_ncurses(void)
 {
-	if (argc <= 1)
-		return (EXIT_FAILURE);
-	printf("%s\n", argv[1]);
-	return (EXIT_SUCCESS);
+	printf("init ok\n");
 }

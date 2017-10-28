@@ -6,11 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/28 14:23:59 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/28 17:32:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/client.h"
+#include "../incs/client.h"
 
 void						need_param(char const *name_bin)
 {

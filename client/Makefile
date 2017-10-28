@@ -6,44 +6,43 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/28 14:37:57 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/10/28 17:48:22 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= client
 
 SRC_NAME		= main.c
+SRC_NAME_GEN	= init_ncurses.c
 
-INCLUDES		= ../incs/client.h
+INCLUDES		= client.h
 
 LIBRARY			= ../libft/libft.a
 
 OTHERS			= libft Makefile auteur
 ARCH			= 64
-OTHER_FLAGS 	=
+OTHER_FLAGS 	= -lncurses
 
 GCC				= gcc
 CFLAGS			= -Wall -Wextra -Werror -o3
 OBJ_NAME		= $(SRC_NAME:.c=.o)
+OBJ_NAME_GEN	=$(SRC_NAME_GEN:.c=.o)
 
 SRCDIR			= srcs
 OBJDIR			= objs
-INCDIR			= ../incs
+OBJDIR_GEN		= ../objs
+INCDIR			= incs
 
 SRC				= $(addprefix $(SRCDIR)/, $(SRC_NAME))
 OBJ				= $(addprefix $(OBJDIR)/, $(OBJ_NAME))
+OBJ_GEN			= $(addprefix $(OBJDIR_GEN)/, $(OBJ_NAME_GEN))
 INC				= $(addprefix $(INCDIR)/, $(INCLUDES))
-DATE			= `date +'%d/%m/%y %H:%M:%S'`
 
 All : $(NAME)
 
-$(NAME) :  $(LIBRARY) $(OBJDIR) $(OBJ)
-	$(GCC) $(CFLAGS) $(OTHER_FLAGS) -m$(ARCH) -o $(NAME) $(OBJ) $(LIBRARY)
+$(NAME) :  $(LIBRARY) $(OBJDIR) $(OBJ) $(OBJ_GEN)
+	$(GCC) $(CFLAGS) $(OTHER_FLAGS) -m$(ARCH) -o $(NAME) $(OBJ) $(OBJ_GEN) $(LIBRARY)
 	@echo "\033[0;32m"$(NAME) "DONE\033[0m"
-
-$(LIBRARY) :
-	@echo "\033[0;32mCOMPILE LIBFT ${ARCH}\033[0m"
-	make -C ../libft libft$(ARCH)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INC)
 	$(GCC) -I $(INCDIR)/ $(CFLAGS) -m$(ARCH) -o $@ -c $<
