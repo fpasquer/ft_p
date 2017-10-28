@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/28 17:48:22 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/10/28 17:57:38 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ_NAME_GEN	=$(SRC_NAME_GEN:.c=.o)
 
 SRCDIR			= srcs
 OBJDIR			= objs
-OBJDIR_GEN		= ../objs
+OBJDIR_GEN		= ../general_objs
 INCDIR			= incs
 
 SRC				= $(addprefix $(SRCDIR)/, $(SRC_NAME))

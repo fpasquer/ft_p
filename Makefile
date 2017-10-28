@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/28 17:48:34 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/10/28 17:56:13 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ GCC				= gcc
 CFLAGS			= -Wall -Wextra -Werror -o3
 OBJ_NAME		= $(SRC_NAME:.c=.o)
 
-SRCDIR			= srcs
-OBJDIR			= objs
-INCDIR			= incs
+SRCDIR			= general_srcs
+OBJDIR			= general_objs
+INCDIR			= general_incs
 
 SRC				= $(addprefix $(SRCDIR)/, $(SRC_NAME))
 OBJ				= $(addprefix $(OBJDIR)/, $(OBJ_NAME))
