@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   loop_client.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/29 09:37:24 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/10/29 09:32:24 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/10/29 10:40:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#include "../incs/client.h"
 
-# include "../../libft/libft.h"
-# include "../../general_incs/general.h"
+void						loop_client(t_ncurses scr)
+{
+	char					b[SIZE_BUFF];
 
-void						loop_client(t_ncurses scr);
-
-#endif
+	if (scr.client == NULL)
+		return ;
+	while (1)
+	{
+		if (get_key_pressed(b) != 0)
+			break ;
+		if (ESC)
+			return ;
+	}
+}

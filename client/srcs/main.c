@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/28 17:32:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/29 09:38:27 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void						need_param(char const *name_bin)
 
 int							main(int argc, char **argv)
 {
+	t_ncurses				scr;
+
 	if (argc <= 2)
 		need_param(argv[0]);
-	printf("ok\n");
+	scr = init_ncurses();
+	loop_client(scr);
+	del_ncurses(scr);
 	return (EXIT_SUCCESS);
 }

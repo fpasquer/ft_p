@@ -6,15 +6,15 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/28 17:56:13 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/10/29 10:29:38 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= general
 
-SRC_NAME		= init_ncurses.c
+SRC_NAME		= init_ncurses.c keybord.c
 
-INCLUDES		= general.h
+INCLUDES		= general.h key.h
 
 LIBRARY			= libft/libft.a
 

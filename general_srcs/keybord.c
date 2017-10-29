@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   keybord.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/29 09:37:24 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/10/29 09:56:13 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/10/29 10:32:33 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#include "../general_incs/general.h"
 
-# include "../../libft/libft.h"
-# include "../../general_incs/general.h"
-
-void						loop_client(t_ncurses scr);
-
-#endif
+int							get_key_pressed(char buff[SIZE_BUFF])
+{
+	if (buff == NULL)
+		return (-1);
+	ft_bzero(buff, sizeof(char) * SIZE_BUFF);
+	if (read(STDIN_FILENO, buff, SIZE_BUFF) < 0)
+		return (-1);
+	return (0);
+}
