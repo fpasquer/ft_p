@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/29 10:42:06 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/29 21:29:47 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void					show_str_ncurses(char const *error)
 	printw("%s\n", error);
 	refresh();
 	getch();
+	exit(EXIT_FAILURE);
 }
 
 static WINDOW				*setup_win(int const height, int const width,
@@ -62,13 +63,13 @@ t_ncurses					init_ncurses(void)
 	else
 		if (init_windows(&scr) != 0)
 			show_str_ncurses("Error init_windows");
-	curs_set(0);
+	curs_set(false);
 	return (scr);
 }
 
 void						del_ncurses(t_ncurses scr)
 {
- 	endwin();
+	endwin();
 	if (scr.infos != NULL)
 		ft_memdel((void**)&scr.infos);
 	if (scr.client != NULL)
@@ -77,4 +78,5 @@ void						del_ncurses(t_ncurses scr)
 		ft_memdel((void**)&scr.server);
 	if (scr.term != NULL)
 		ft_memdel((void**)&scr.term);
+	curs_set(true);
 }

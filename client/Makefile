@@ -6,14 +6,14 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/29 10:05:44 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/10/29 21:34:03 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= client
 
 SRC_NAME		= main.c loop_client.c
-SRC_NAME_GEN	= init_ncurses.c keybord.c
+SRC_NAME_GEN	= init_ncurses.c keybord.c general.c
 
 INCLUDES		= client.h
 
