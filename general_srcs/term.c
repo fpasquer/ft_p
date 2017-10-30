@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 11:29:54 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 12:51:03 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int							get_cmd(char cmd[SIZE_CMD], size_t *i,
 		if ((len = get_key_pressed(key)) < 0 ||
 				ft_strncmp(key, KEY_ENTER_, SIZE_BUFF) == 0)
 			break ;
+#ifdef DEBUG
+	fprintf(debug ,"key[0] = %d key[1] = %d key[2] = %d key[3] = %d key[4] = %d key[5] = %d => len = %zi\n", key[0], key[1], key[2], key[3], key[4], key[5], len);
+#endif
 		j = 0;
 		while (g_cmds[j].cmd != NULL)
 			if (ft_strncmp(g_cmds[j++].cmd, key, SIZE_BUFF) == 0)

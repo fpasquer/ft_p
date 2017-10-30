@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 10:58:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 12:01:04 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,10 @@
 # define HIGHT_INFO_WIN 8
 # define HIGHT_TERM_WIN 10
 
-# define ESCAPE 27
-
 # define DEBUG
 
 # define SIZE_CWD 500
 # define SIZE_CMD 1000
-
-# define WAIT_TIME CLOCKS_PER_SEC * 0.7
 
 # define PROMPT "?> "
 # define LEN_PROMPT ft_strlen(PROMPT)
