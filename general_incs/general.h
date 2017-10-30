@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 07:33:05 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 07:58:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 
 # define DEBUG
 
+# define SIZE_CWD 500
+
 # ifdef DEBUG
 	FILE					*debug;
 # endif
@@ -39,9 +41,19 @@ typedef struct				s_ncurses
 	WINDOW					*term;
 }							t_ncurses;
 
+typedef struct				s_list_cwd
+{
+	char					cwd[SIZE_CWD];
+	char					**list;
+	int						nb_row;
+	int						decalage;
+}							t_list_cwd;
+
 typedef struct				s_gen
 {
 	t_ncurses				scr;
+	t_list_cwd				cwd_client;
+	t_list_cwd				cwd_server;
 }							t_gen;
 
 
@@ -50,5 +62,13 @@ void						del_ncurses(t_ncurses scr);
 int							get_key_pressed(char buff[SIZE_BUFF]);
 t_gen						*get_general(t_gen *ptr);
 void						del_general(void);
+
+
+/*
+**	gestion cwd
+*/
+int							set_list_cwd(t_list_cwd *cwd);
+int							print_list_cwd(t_list_cwd cwd, WINDOW *win);
+void						del_list_cwd(t_list_cwd cwd);
 
 #endif

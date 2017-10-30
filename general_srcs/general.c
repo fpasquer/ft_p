@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 07:37:51 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 08:32:17 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ t_gen						*get_general(t_gen *ptr)
 
 void						del_general(void)
 {
-	void					*ptr;
 	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL)
 		return ;
-	ptr = &gen->scr;
+	del_list_cwd(gen->cwd_client);
+	del_list_cwd(gen->cwd_server);
 	del_ncurses(gen->scr);
 	ft_memdel((void**)&gen);
 #ifdef DEBUG

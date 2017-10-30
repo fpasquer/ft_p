@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 07:36:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 08:07:11 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int							main(int argc, char **argv)
 	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL)
 		return (EXIT_FAILURE);
 	gen->scr = init_ncurses();
+	if (set_list_cwd(&gen->cwd_client) != 0 || print_list_cwd(gen->cwd_client, gen->scr.client) != 0)
+		return (EXIT_FAILURE);
 	loop_client(gen->scr);
 	del_general();
 	return (EXIT_SUCCESS);
