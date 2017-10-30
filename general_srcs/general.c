@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 08:32:17 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 09:12:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_gen						*get_general(t_gen *ptr)
 	return (gen);
 }
 
-void						del_general(void)
+void						del_general(int const ret)
 {
 	t_gen					*gen;
 
@@ -37,4 +37,5 @@ void						del_general(void)
 #ifdef DEBUG
 	fclose(debug);
 #endif
+	exit(ret);
 }

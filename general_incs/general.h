@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 07:58:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 09:57:31 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define DEBUG
 
 # define SIZE_CWD 500
+# define SIZE_CMD 1000
 
 # ifdef DEBUG
 	FILE					*debug;
@@ -51,21 +52,49 @@ typedef struct				s_list_cwd
 
 typedef struct				s_gen
 {
+	char					cmd[SIZE_CMD];
 	t_ncurses				scr;
 	t_list_cwd				cwd_client;
 	t_list_cwd				cwd_server;
 }							t_gen;
 
-
-t_ncurses					init_ncurses(void);
-void						del_ncurses(t_ncurses scr);
-int							get_key_pressed(char buff[SIZE_BUFF]);
-t_gen						*get_general(t_gen *ptr);
-void						del_general(void);
+typedef struct				s_cmd_manager
+{
+	char					*cmd;
+	int						(*f)(void);
+}							t_cmd_manager;
 
 
 /*
-**	gestion cwd
+**	ncurses
+*/
+t_ncurses					init_ncurses(void);
+void						del_ncurses(t_ncurses scr);
+
+/*
+**	term
+*/
+ssize_t						get_key_pressed(char buff[SIZE_BUFF]);
+int							loop_term(t_gen *gen);
+
+/*
+**	cmds
+*/
+int							func_exit(void);
+int							func_ls(void);
+int							func_cd(void);
+int							func_get(void);
+int							func_put(void);
+int							func_pwd(void);
+
+/*
+**	general manager
+*/
+t_gen						*get_general(t_gen *ptr);
+void						del_general(int const ret);
+
+/*
+**	gestion cwd client server
 */
 int							set_list_cwd(t_list_cwd *cwd);
 int							print_list_cwd(t_list_cwd cwd, WINDOW *win);
