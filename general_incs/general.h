@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/29 21:35:55 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 07:33:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 
 # define ESCAPE 27
 
+# define DEBUG
+
+# ifdef DEBUG
+	FILE					*debug;
+# endif
+
 typedef struct				s_ncurses
 {
 	WINDOW					*infos;
@@ -38,10 +44,11 @@ typedef struct				s_gen
 	t_ncurses				scr;
 }							t_gen;
 
+
 t_ncurses					init_ncurses(void);
 void						del_ncurses(t_ncurses scr);
 int							get_key_pressed(char buff[SIZE_BUFF]);
-t_gen						*get_general(void);
+t_gen						*get_general(t_gen *ptr);
 void						del_general(void);
 
 #endif
