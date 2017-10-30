@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 09:57:31 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/30 10:58:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include "key.h"
 # include <ncurses.h>
+# include <time.h>
 
 # define SCR_ROW_MIN 51
 # define SCR_COL_MIN 203
@@ -29,6 +30,11 @@
 
 # define SIZE_CWD 500
 # define SIZE_CMD 1000
+
+# define WAIT_TIME CLOCKS_PER_SEC * 0.7
+
+# define PROMPT "?> "
+# define LEN_PROMPT ft_strlen(PROMPT)
 
 # ifdef DEBUG
 	FILE					*debug;
@@ -86,6 +92,8 @@ int							func_cd(void);
 int							func_get(void);
 int							func_put(void);
 int							func_pwd(void);
+int							func_login(void);
+int							func_logout(void);
 
 /*
 **	general manager
