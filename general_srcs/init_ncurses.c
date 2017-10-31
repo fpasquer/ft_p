@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 07:51:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/31 08:09:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,19 @@ t_ncurses					init_ncurses(void)
 	return (scr);
 }
 
-void						del_ncurses(t_ncurses scr)
+void						del_ncurses(t_gen *gen)
 {
 	endwin();
-	if (scr.infos != NULL)
-		ft_memdel((void**)&scr.infos);
-	if (scr.client != NULL)
-		ft_memdel((void**)&scr.client);
-	if (scr.server != NULL)
-		ft_memdel((void**)&scr.server);
-	if (scr.term != NULL)
-		ft_memdel((void**)&scr.term);
+	if (gen != NULL)
+	{
+		if (gen->scr.infos != NULL)
+			ft_memdel((void**)&gen->scr.infos);
+		if (gen->scr.client != NULL)
+			ft_memdel((void**)&gen->scr.client);
+		if (gen->scr.server != NULL)
+			ft_memdel((void**)&gen->scr.server);
+		if (gen->scr.term != NULL)
+			ft_memdel((void**)&gen->scr.term);
+	}
 	curs_set(true);
 }

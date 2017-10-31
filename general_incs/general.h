@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 12:01:04 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/31 08:06:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GENERAL_H
 
 # include "../libft/libft.h"
-# include "key.h"
 # include <ncurses.h>
 # include <time.h>
 
@@ -25,6 +24,8 @@
 # define HIGHT_TERM_WIN 10
 
 # define DEBUG
+
+# define SIZE_BUFF 7
 
 # define SIZE_CWD 500
 # define SIZE_CMD 1000
@@ -71,7 +72,7 @@ typedef struct				s_cmd_manager
 **	ncurses
 */
 t_ncurses					init_ncurses(void);
-void						del_ncurses(t_ncurses scr);
+void						del_ncurses(t_gen *gen);
 
 /*
 **	term
@@ -90,6 +91,7 @@ int							func_put(void);
 int							func_pwd(void);
 int							func_login(void);
 int							func_logout(void);
+int							func_refresh_client(void);
 
 /*
 **	general manager

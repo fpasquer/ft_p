@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 09:12:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/10/31 08:12:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void						del_general(int const ret)
 		return ;
 	del_list_cwd(gen->cwd_client);
 	del_list_cwd(gen->cwd_server);
-	del_ncurses(gen->scr);
+	del_ncurses(gen); // ne fonctionne pas
 	ft_memdel((void**)&gen);
 #ifdef DEBUG
 	fclose(debug);
