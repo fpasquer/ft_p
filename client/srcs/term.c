@@ -6,11 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/31 07:58:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:40:39 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../general_incs/general.h"
+#include "../incs/client.h"
 
 # define KEY_ENTER_ (char[]){13, 0, 0, 0, 0, 0, 0}
 # define KEY_DEL_ (char[]){127, 0, 0, 0, 0, 0, 0}

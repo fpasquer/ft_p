@@ -6,14 +6,13 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/10/30 09:07:03 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/01 18:47:33 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= general
 
-SRC_NAME		= init_ncurses.c keybord.c general.c cwd_manager.c term.c		\
-				  cmds.c
+SRC_NAME		= keybord.c cwd_manager.c
 
 INCLUDES		= general.h key.h
 

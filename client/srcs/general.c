@@ -6,11 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 07:42:35 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:45:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../general_incs/general.h"
+#include "../incs/client.h"
 
 t_gen						*get_general(t_gen *ptr)
 {

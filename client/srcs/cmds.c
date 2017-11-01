@@ -6,11 +6,11 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/31 08:00:46 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:43:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../general_incs/general.h"
+#include "../incs/client.h"
 
 int							func_exit(void)
 {

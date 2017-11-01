@@ -6,11 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 07:41:33 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:48:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../general_incs/general.h"
+#include "../incs/client.h"
 
 static void					show_str_ncurses(char const *error)
 {

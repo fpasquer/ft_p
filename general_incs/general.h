@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/31 08:06:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:49:36 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,37 +67,10 @@ typedef struct				s_cmd_manager
 	int						(*f)(void);
 }							t_cmd_manager;
 
-
 /*
-**	ncurses
-*/
-t_ncurses					init_ncurses(void);
-void						del_ncurses(t_gen *gen);
-
-/*
-**	term
+**	keybord.c
 */
 ssize_t						get_key_pressed(char buff[SIZE_BUFF]);
-int							loop_term(t_gen *gen);
-
-/*
-**	cmds
-*/
-int							func_exit(void);
-int							func_ls(void);
-int							func_cd(void);
-int							func_get(void);
-int							func_put(void);
-int							func_pwd(void);
-int							func_login(void);
-int							func_logout(void);
-int							func_refresh_client(void);
-
-/*
-**	general manager
-*/
-t_gen						*get_general(t_gen *ptr);
-void						del_general(int const ret);
 
 /*
 **	gestion cwd client server
