@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/10/30 08:29:12 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 21:09:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int							print_list_cwd(t_list_cwd cwd, WINDOW *win)
 		mvwprintw(win, i + 2, 1, "\t%s", cwd.list[i]);
 		i++;
 	}
+	attroff(COLOR_PAIR(1));
 	wrefresh(win);
 	return (0);
 }

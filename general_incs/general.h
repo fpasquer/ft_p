@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 18:49:36 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 19:59:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # define HIGHT_INFO_WIN 8
 # define HIGHT_TERM_WIN 10
 
-# define DEBUG
-
 # define SIZE_BUFF 7
 
 # define SIZE_CWD 500
@@ -37,13 +35,11 @@
 	FILE					*debug;
 # endif
 
-typedef struct				s_ncurses
+typedef struct				s_coord
 {
-	WINDOW					*infos;
-	WINDOW					*client;
-	WINDOW					*server;
-	WINDOW					*term;
-}							t_ncurses;
+	int						y;
+	int						x;
+}							t_coord;
 
 typedef struct				s_list_cwd
 {
@@ -52,14 +48,6 @@ typedef struct				s_list_cwd
 	int						nb_row;
 	int						decalage;
 }							t_list_cwd;
-
-typedef struct				s_gen
-{
-	char					cmd[SIZE_CMD];
-	t_ncurses				scr;
-	t_list_cwd				cwd_client;
-	t_list_cwd				cwd_server;
-}							t_gen;
 
 typedef struct				s_cmd_manager
 {

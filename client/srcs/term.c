@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 18:40:39 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/01 20:43:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # define KEY_DEL_ (char[]){127, 0, 0, 0, 0, 0, 0}
 # define KEY_F5_ (char[]){27, 91, 49, 53, 126, 0, 0}
 # define KEY_ESC_ (char[]){27, 0, 0, 0, 0, 0, 0}
+# define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
+
 
 t_cmd_manager				g_cmds[] = {
 	{KEY_ESC_, func_exit},
 	{KEY_F5_, func_refresh_client},
+	{KEY_F6_, func_change_win},
 	{"LS", func_ls},
 	{"CD", func_cd},
 	{"GET", func_get},
