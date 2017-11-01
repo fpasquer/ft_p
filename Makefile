@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/01 18:47:33 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/01 18:58:44 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= general
 
 SRC_NAME		= keybord.c cwd_manager.c
 
-INCLUDES		= general.h key.h
+INCLUDES		= general.h
 
 LIBRARY			= libft/libft.a
 
