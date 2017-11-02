@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 20:52:11 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 21:01:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ typedef struct				s_info_client
 	t_type_ip				type_ip;		//IPV4 ou IPV6
 }							t_info_client;
 
-typedef struct				s_signaux_func
+typedef struct				s_sig_func
 {
 	int						signal;
 	void					(*f)(int);
-}							t_signaux_func;
+}							t_sig_func;
 
 typedef enum				e_win
 {

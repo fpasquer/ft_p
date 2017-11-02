@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 17:55:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 18:46:47 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 21:00:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void				func_sig_winch(int sig)
 int						init_signaux(void)
 {
 	int					i;
-	t_signaux_func		list_sin[] =
+	t_sig_func const	list_sin[] =
 	{
 		{SIGINT, func_int},
 		{SIGWINCH, func_sig_winch},
