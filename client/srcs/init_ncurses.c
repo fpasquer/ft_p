@@ -6,21 +6,12 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 07:54:49 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 18:50:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
 
-static void					show_str_ncurses(char const *error)
-{
-	if (error == NULL)
-		return ;
-	printw("%s\n", error);
-	refresh();
-	getch();
-	exit(EXIT_FAILURE);
-}
 
 static WINDOW				*setup_win(int const height, int const width,
 		int const begin_y, int const begin_x)
@@ -38,6 +29,7 @@ static WINDOW				*setup_win(int const height, int const width,
 {
 	if (scr == NULL)
 		return (-1);
+	clear();
 	if ((scr->infos = setup_win(HIGHT_INFO_WIN, COLS, 0, 0)) == NULL)
 		return (-1);
 	if ((scr->client = setup_win(LINES - HIGHT_INFO_WIN - HIGHT_TERM_WIN,
@@ -47,9 +39,19 @@ static WINDOW				*setup_win(int const height, int const width,
 			COLS / 2, HIGHT_INFO_WIN, COLS / 2)) == NULL)
 		return (-1);
 	if ((scr->term = setup_win(HIGHT_TERM_WIN, COLS, LINES - HIGHT_TERM_WIN, 0)
-			)== NULL)
+			) == NULL)
 		return (-1);
 	return (0);
+}
+
+void						show_str_ncurses(char const *error)
+{
+	if (error == NULL)
+		return ;
+	clear();
+	printw("%s\n", error);
+	refresh();
+	getch();
 }
 
 t_ncurses					init_ncurses(void)
@@ -65,11 +67,8 @@ t_ncurses					init_ncurses(void)
 	while (colors[++i].pair != 0)
 		init_pair(colors[i].pair, colors[i].font, colors[i].background);
 	ft_bzero(&scr, sizeof(scr));
-	if (LINES < SCR_ROW_MIN || COLS < SCR_COL_MIN)
-		show_str_ncurses("Screen too small");
-	else
-		if (init_windows(&scr) != 0)
-			show_str_ncurses("Error init_windows");
+	if (init_windows(&scr) != 0)
+		show_str_ncurses("Error init_windows");
 	curs_set(false);
 	return (scr);
 }

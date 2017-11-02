@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 20:43:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 18:49:19 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define KEY_F5_ (char[]){27, 91, 49, 53, 126, 0, 0}
 # define KEY_ESC_ (char[]){27, 0, 0, 0, 0, 0, 0}
 # define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
-
 
 t_cmd_manager				g_cmds[] = {
 	{KEY_ESC_, func_exit},
@@ -79,6 +78,14 @@ int							get_cmd(char cmd[SIZE_CMD], size_t *i,
 	return (len < 0 ? -1 : 0);
 }
 
+bool						term_size(void)
+{
+	if (!(LINES < SCR_ROW_MIN || COLS < SCR_COL_MIN))
+		return (true);
+	show_str_ncurses("Screen too small");
+	return (false);
+}
+
 int							loop_term(t_gen *gen)
 {
 	int						wrong_cmd;
@@ -89,14 +96,15 @@ int							loop_term(t_gen *gen)
 		return (-1);
 	wrong_cmd = false;
 	while (1)
-	{
-		if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0)
-			del_general(EXIT_FAILURE);
-		i = 0;
-		wrong_cmd = true;
-		while (g_cmds[i].cmd != NULL)
-			if (ft_strcmp(g_cmds[i++].cmd, gen->cmd) == 0)
-				wrong_cmd = g_cmds[i - 1].f();
-	}
+		if (term_size() == true)
+		{
+			if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0)
+				del_general(EXIT_FAILURE);
+			i = 0;
+			wrong_cmd = true;
+			while (g_cmds[i].cmd != NULL)
+				if (ft_strcmp(g_cmds[i++].cmd, gen->cmd) == 0)
+					wrong_cmd = g_cmds[i - 1].f();
+		}
 	return (0);
 }

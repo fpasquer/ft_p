@@ -6,13 +6,13 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/01 18:47:55 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/02 18:12:53 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= client
 
-SRC_NAME		= main.c term.c cmds.c general.c init_ncurses.c
+SRC_NAME		= main.c term.c cmds.c general.c init_ncurses.c signaux.c
 SRC_NAME_GEN	= keybord.c cwd_manager.c
 
 INCLUDES		= client.h

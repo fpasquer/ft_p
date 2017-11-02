@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 07:47:49 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 18:12:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int							main(int argc, char **argv)
 		need_param(argv[0]);
 	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL)
 		return (EXIT_FAILURE);
+	init_signaux();
 	gen->scr = init_ncurses();
 	gen->win = SERVER;
 	if (set_list_cwd(&gen->cwd_client) != 0 ||
