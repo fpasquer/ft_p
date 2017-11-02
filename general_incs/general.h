@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 19:59:24 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 07:37:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 
 # define SIZE_CWD 500
 # define SIZE_CMD 1000
+
+# define UNSELECTED 1
+# define SELECTED 2
 
 # define PROMPT "?> "
 # define LEN_PROMPT ft_strlen(PROMPT)
@@ -64,7 +67,8 @@ ssize_t						get_key_pressed(char buff[SIZE_BUFF]);
 **	gestion cwd client server
 */
 int							set_list_cwd(t_list_cwd *cwd);
-int							print_list_cwd(t_list_cwd cwd, WINDOW *win);
+int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
+		bool const selected);
 void						del_list_cwd(t_list_cwd cwd);
 
 #endif

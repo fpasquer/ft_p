@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 21:09:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 07:44:23 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,31 @@ int							set_list_cwd(t_list_cwd *cwd)
 	return (0);
 }
 
-int							print_list_cwd(t_list_cwd cwd, WINDOW *win)
+int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
+		bool const selected)
 {
 	int						i;
+	int						j;
 
-	if (cwd.list == NULL || win == NULL || LINES - 2 - HIGHT_INFO_WIN -
+	if (win == NULL || LINES - 2 - HIGHT_INFO_WIN -
 			HIGHT_TERM_WIN <= 0)
 		return (-1);
 	i = 0;
-	mvwprintw(win, 1, 1, "%s", cwd.cwd);
-	while (cwd.list[i] != NULL && i + cwd.decalage < LINES - HIGHT_INFO_WIN -
-			HIGHT_TERM_WIN - 2)
+	j = selected == true ? SELECTED : UNSELECTED;
+	wclear(win);
+	wattron(win, COLOR_PAIR(j));
+	box(win, ACS_VLINE, ACS_HLINE);
+	if (cwd.list != NULL)
 	{
-		mvwprintw(win, i + 2, 1, "\t%s", cwd.list[i]);
-		i++;
+		mvwprintw(win, 1, 1, "%s", cwd.cwd);
+		while (cwd.list[i] != NULL && i + cwd.decalage < LINES - HIGHT_INFO_WIN
+				- HIGHT_TERM_WIN - 2)
+		{
+			mvwprintw(win, i + 2, 1, "\t%s", cwd.list[i]);
+			i++;
+		}
 	}
-	attroff(COLOR_PAIR(1));
+	wattroff(win, COLOR_PAIR(j));
 	wrefresh(win);
 	return (0);
 }
