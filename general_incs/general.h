@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 18:10:19 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 20:53:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # ifdef DEBUG
 	FILE					*debug;
 # endif
+
+typedef enum				e_type_ip
+{
+	IPV4, IPV6
+}							t_type_ip;
 
 typedef struct				s_coord
 {
@@ -70,5 +75,11 @@ int							set_list_cwd(t_list_cwd *cwd);
 int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 		bool const selected);
 void						del_list_cwd(t_list_cwd cwd);
+
+/*
+**	check_ip_port
+*/
+char						*get_ip(char const *ip, t_type_ip *type_ip);
+bool						check_port(char *port);
 
 #endif

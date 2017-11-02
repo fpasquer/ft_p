@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 18:12:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 20:54:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void						need_param(char const *name_bin)
 {
 	if (name_bin != NULL)
 		ft_putstr_fd(name_bin, STDERR_FILENO);
-	ft_putstr_fd(" need ip and port\n", STDERR_FILENO);
+	ft_putstr_fd(" need ip and port \n", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
@@ -24,10 +24,16 @@ int							main(int argc, char **argv)
 {
 	t_gen					*gen;
 
+#ifdef DEBUG
+	debug = fopen("debug.txt", "w+");
+#endif
 	if (argc <= 2)
 		need_param(argv[0]);
-	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL)
-		return (EXIT_FAILURE);
+	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL || check_port(
+			(gen->i_client.port = argv[2])) == false)
+		del_general(EXIT_FAILURE);
+	if ((gen->i_client.ip = get_ip(argv[1], &gen->i_client.type_ip)) == NULL)
+		del_general(EXIT_FAILURE);
 	init_signaux();
 	gen->scr = init_ncurses();
 	gen->win = SERVER;

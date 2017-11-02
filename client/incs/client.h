@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 18:46:08 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/02 20:52:11 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include "../../libft/libft.h"
 # include "../../general_incs/general.h"
 # include <signal.h>
+
+typedef struct				s_info_client
+{
+	int						fd;				//fd de la socker
+	char					*port;			//port d'ecoute
+	char					*ip;			//adresse ip
+	t_type_ip				type_ip;		//IPV4 ou IPV6
+}							t_info_client;
 
 typedef struct				s_signaux_func
 {
@@ -48,6 +56,7 @@ typedef struct				s_ncurses
 typedef struct				s_gen
 {
 	char					cmd[SIZE_CMD];	//commandes tapee dans le shell
+	t_info_client			i_client;		//info sur le client
 	t_ncurses				scr;			//ensembles des fenetres
 	t_list_cwd				cwd_client;		//liste fichiers du client
 	t_list_cwd				cwd_server;		//liste fichiers du server

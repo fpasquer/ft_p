@@ -6,13 +6,13 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/01 18:58:44 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/02 19:40:07 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= general
 
-SRC_NAME		= keybord.c cwd_manager.c
+SRC_NAME		= keybord.c cwd_manager.c check_ip_port.c
 
 INCLUDES		= general.h
 
