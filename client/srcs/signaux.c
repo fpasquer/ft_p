@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 17:55:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 21:00:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/03 08:34:39 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void				func_sig_winch(int sig)
 	else
 		if (print_list_cwd(gen->cwd_client, gen->scr.client, gen->win ==
 				CLIENT ? true : false) != 0 || print_list_cwd(gen->cwd_server,
-				gen->scr.server, gen->win == SERVER ? true : false) != 0)
+				gen->scr.server, gen->win == SERVER ? true : false) != 0 ||
+				print_infos() != 0)
 			return ;
 	sig = (int)sig;
 }

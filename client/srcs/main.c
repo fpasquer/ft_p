@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 20:56:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/03 08:38:43 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ int							main(int argc, char **argv)
 	init_signaux();
 	gen->scr = init_ncurses();
 	gen->win = SERVER;
+	if (add_infos("Connexion SUCCESS") != 0)
+		del_general(EXIT_FAILURE);
 	if (set_list_cwd(&gen->cwd_client) != 0 ||
 			print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
-			? true : false) != 0)
+			? true : false) != 0 || print_infos() != 0)
 		del_general(EXIT_FAILURE);
 	loop_term(gen);
-	del_general(EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	del_general(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }

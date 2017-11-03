@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 07:45:03 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/03 08:32:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int							func_change_win(void)
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
 	gen->win = gen->win == CLIENT ? SERVER : CLIENT;
+	if (add_infos(gen->win == CLIENT ? "Execute commandes on client" :
+			"Execute commandes on server") != 0 || print_infos() != 0)
+		return (-1);
 	if (print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT ?
 			true : false) != 0)
 		return (-1);
@@ -79,6 +82,8 @@ int							func_refresh_client(void)
 	if (set_list_cwd(&gen->cwd_client) != 0 ||
 			print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
 			? true : false) != 0)
+		return (-1);
+	if (add_infos("Client have been refresh") != 0 || print_infos() != 0)
 		return (-1);
 	return (0);
 }

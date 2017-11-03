@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 20:53:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/03 08:09:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@
 # include <ncurses.h>
 # include <time.h>
 
+# define SIZE_CWD 500
+
+# define SIZE_BUFF 7
+
 # define SCR_ROW_MIN 51
 # define SCR_COL_MIN 203
 
 # define HIGHT_INFO_WIN 8
 # define HIGHT_TERM_WIN 10
 
-# define SIZE_BUFF 7
-
-# define SIZE_CWD 500
-# define SIZE_CMD 1000
-
 # define UNSELECTED 1
 # define SELECTED 2
-
-# define PROMPT "?> "
-# define LEN_PROMPT ft_strlen(PROMPT)
 
 # ifdef DEBUG
 	FILE					*debug;

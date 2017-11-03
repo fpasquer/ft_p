@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 21:01:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/03 08:25:52 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define CLIENT_H
 
 # define DEBUG
+
+# define SIZE_CMD 1000
+
+# define PROMPT "?> "
+# define LEN_PROMPT ft_strlen(PROMPT)
 
 # include "../../libft/libft.h"
 # include "../../general_incs/general.h"
@@ -56,6 +61,9 @@ typedef struct				s_ncurses
 typedef struct				s_gen
 {
 	char					cmd[SIZE_CMD];	//commandes tapee dans le shell
+	char					last_infos[HIGHT_INFO_WIN - 2][SCR_COL_MIN - 2];
+											//Tableau pour stoker les infos
+	int						i_last_infos;	//index de last_infos
 	t_info_client			i_client;		//info sur le client
 	t_ncurses				scr;			//ensembles des fenetres
 	t_list_cwd				cwd_client;		//liste fichiers du client
@@ -100,6 +108,12 @@ void						del_general(int const ret);
 /*
 **	signaux
 */
-int						init_signaux(void);
+int							init_signaux(void);
+
+/*
+**	infos.c
+*/
+int							add_infos(char const *str);
+int							print_infos(void);
 
 #endif
