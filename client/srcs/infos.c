@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 07:31:40 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/03 08:26:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/08 07:58:10 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int							print_infos(void)
 	i = 0;
 	wclear(gen->scr.infos);
 	wattron(gen->scr.infos, COLOR_PAIR(UNSELECTED));
-	box(gen->scr.infos, ACS_VLINE, ACS_HLINE);
+	if (wborder(gen->scr.infos, '|', '|', '-', '-', '+', '+', '+', '+') != OK)
+		return (-1);
 	while (i < gen->i_last_infos)
 	{
 		mvwprintw(gen->scr.infos, i + 1, 1, "%s", gen->last_infos[i]);

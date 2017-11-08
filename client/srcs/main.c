@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/03 08:38:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/08 08:42:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int							main(int argc, char **argv)
 #endif
 	if (argc <= 2)
 		need_param(argv[0]);
+
 	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL || check_port(
 			(gen->i_client.port = argv[2])) == false)
 		del_general(EXIT_FAILURE);
@@ -37,9 +38,7 @@ int							main(int argc, char **argv)
 	init_signaux();
 	gen->scr = init_ncurses();
 	gen->win = SERVER;
-	if (add_infos("Connexion SUCCESS") != 0)
-		del_general(EXIT_FAILURE);
-	if (set_list_cwd(&gen->cwd_client) != 0 ||
+	if (login_server() != 0 || set_list_cwd(&gen->cwd_client) != 0 ||
 			print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
 			? true : false) != 0 || print_infos() != 0)
 		del_general(EXIT_FAILURE);

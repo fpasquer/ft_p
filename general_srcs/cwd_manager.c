@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 07:44:23 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/08 07:57:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 	j = selected == true ? SELECTED : UNSELECTED;
 	wclear(win);
 	wattron(win, COLOR_PAIR(j));
-	box(win, ACS_VLINE, ACS_HLINE);
+	if (wborder(win, '|', '|', '-', '-', '+', '+', '+', '+') != OK)
+		return (-1);
 	if (cwd.list != NULL)
 	{
 		mvwprintw(win, 1, 1, "%s", cwd.cwd);

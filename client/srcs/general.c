@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 20:55:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/08 08:51:54 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void						del_general(int const ret)
 #ifdef DEBUG
 	fclose(debug);
 #endif
+	logout_server();
 	if ((gen = get_general(NULL)) == NULL)
 		return ;
 	if (gen->i_client.ip != NULL)
