@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:11:49 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/02 20:53:44 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 09:33:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char						*get_ip(char const *ip, t_type_ip *type_ip)
 	int						count_number;
 
 	ret = NULL;
+
 	if (ip == NULL || type_ip == NULL || (ret = const_ip(ip, &type_ip)) != NULL)
 		return (ret);
 	i = -1;

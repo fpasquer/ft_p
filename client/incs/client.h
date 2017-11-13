@@ -6,16 +6,15 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 08:57:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 09:30:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
 # define CLIENT_H
 
-# define DEBUG
-
 # define SIZE_CMD 1000
+
 
 # define PROMPT "?> "
 # define LEN_PROMPT ft_strlen(PROMPT)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 08:32:23 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 09:30:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <time.h>
 # include <sys/socket.h>
 # include <netinet/in.h>
+# include <netdb.h>
+# include <errno.h>
 # include <arpa/inet.h>
 
 # define SIZE_CWD 500
@@ -32,6 +34,8 @@
 
 # define UNSELECTED 1
 # define SELECTED 2
+
+# define DEBUG
 
 # ifdef DEBUG
 	FILE					*debug;
