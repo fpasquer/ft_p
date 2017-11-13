@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 09:30:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 10:06:49 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # ifdef DEBUG
 	FILE					*debug;
 # endif
+
+typedef struct				s_sig_func
+{
+	int						signal;
+	void					(*f)(int);
+}							t_sig_func;
 
 typedef enum				e_type_ip
 {

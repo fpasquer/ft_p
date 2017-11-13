@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 09:30:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 10:06:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef struct				s_info_client
 //	struct sockaddr_in		sin;			//pour la config de connexion
 	t_type_ip				type_ip;		//IPV4 ou IPV6
 }							t_info_client;
-
-typedef struct				s_sig_func
-{
-	int						signal;
-	void					(*f)(int);
-}							t_sig_func;
 
 typedef enum				e_win
 {

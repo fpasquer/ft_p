@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/01 18:51:27 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 10:31:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,26 @@
 # include "../../general_incs/general.h"
 # include <stdio.h>
 # include <stdlib.h>
+
+typedef struct				s_gen
+{
+	char					*port;			//port d' ecoute du server
+}							t_gen;
+
+/*
+**	server.c
+*/
+int							loop_server(void);
+
+/*
+**	general.c
+*/
+t_gen						*get_general(t_gen *ptr);
+void						del_general(int const ret);
+
+/*
+**	signaux.c
+*/
+int							init_signaux(void);
 
 #endif

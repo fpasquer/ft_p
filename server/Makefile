@@ -6,14 +6,14 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/01 18:52:09 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/13 10:33:32 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= server
 
-SRC_NAME		= main.c
-SRC_NAME_GEN	=
+SRC_NAME		= main.c signaux.c general.c server.c
+SRC_NAME_GEN	= check_ip_port.c
 
 INCLUDES		= server.h
 

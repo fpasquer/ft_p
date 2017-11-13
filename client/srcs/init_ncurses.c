@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 07:57:39 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 09:43:28 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ static WINDOW				*setup_win(int const height, int const width,
 
 	if ((win = subwin(stdscr, height, width, begin_y, begin_x)) == NULL)
 		return (NULL);
-	if (wborder(win, '|', '|', '-', '-', '+', '+', '+', '+') != OK)//a supprimer une fois que toutes les fentres pourront etre initialisees
-		return (NULL);
 	wrefresh(win);
 	return (win);
 }
 
- static int					init_windows(t_ncurses *scr)
+static int					init_windows(t_ncurses *scr)
 {
 	if (scr == NULL)
 		return (-1);
