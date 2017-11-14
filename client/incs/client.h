@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 10:06:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:24:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct				s_info_client
 	int						fd;				//fd de la socker
 	char					*port;			//port d'ecoute
 	char					*ip;			//adresse ip
-//	struct sockaddr_in		sin;			//pour la config de connexion
 	t_type_ip				type_ip;		//IPV4 ou IPV6
 }							t_info_client;
 

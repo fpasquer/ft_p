@@ -6,13 +6,13 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 13:08:51 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 16:38:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
 
-static char				*get_node_ip(struct addrinfo const *node, char *buff,
+/*static char				*get_node_ip(struct addrinfo const *node, char *buff,
 		size_t const buff_size)
 {
 	void				*sin_addr;
@@ -72,5 +72,26 @@ int						loop_server(void)
 		curs = curs->ai_next;
 	}
 	freeaddrinfo(ptr);
+	return (0);
+}*/
+
+int						init_server(t_gen *gen)
+{
+	if (gen == NULL)
+		return (-1);
+	printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
+	return (0);
+}
+
+int						loop_server(void)
+{
+	t_gen				*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	while (1)
+	{
+		;
+	}
 	return (0);
 }

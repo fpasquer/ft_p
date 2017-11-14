@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 10:06:49 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 17:25:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct				s_sig_func
 
 typedef enum				e_type_ip
 {
-	IPV4, IPV6
+	IPV4 = AF_INET, IPV6 = AF_INET6
 }							t_type_ip;
 
 typedef struct				s_coord
@@ -89,6 +89,9 @@ void						del_list_cwd(t_list_cwd cwd);
 **	check_ip_port
 */
 char						*get_ip(char const *ip, t_type_ip *type_ip);
-bool						check_port(char *port);
+int							check_ip(char const *ip);
+bool						check_port(char const *port);
+int							ipv4_mapped_ipv6(char const *ipv4, char *dest,
+		size_t const size_dest);
 
 #endif
