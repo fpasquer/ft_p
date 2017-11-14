@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 18:03:28 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:42:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
 
-/*static char				*get_node_ip(struct addrinfo const *node, char *buff,
+static char				*get_node_ip(struct addrinfo const *node, char *buff,
 		size_t const buff_size)
 {
 	void				*sin_addr;
@@ -31,10 +31,10 @@
 	return (buff);
 }
 
-static int				print_addr(struct addrinfo const *node)
+/*static int					print_addr(struct addrinfo const *node)
 {
-	char				buff_addr[INET6_ADDRSTRLEN];
-	size_t				size_buff;
+	char					buff_addr[INET6_ADDRSTRLEN];
+	size_t					size_buff;
 
 	if (node == NULL)
 		return (-1);
@@ -50,12 +50,12 @@ static int				print_addr(struct addrinfo const *node)
 	return (0);
 }
 
-int						loop_server(void)
+int							loop_server(void)
 {
-	struct addrinfo		hints;
-	struct addrinfo		*curs;
-	struct addrinfo		*ptr;
-	t_gen				*gen;
+	struct addrinfo			hints;
+	struct addrinfo			*curs;
+	struct addrinfo			*ptr;
+	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
@@ -75,20 +75,65 @@ int						loop_server(void)
 	return (0);
 }*/
 
-int						init_server(t_gen *gen)
+static int					check_node(t_gen *gen, struct addrinfo const node)
 {
+	char					buff_addr[INET6_ADDRSTRLEN];
+
+	if (get_node_ip(&node, buff_addr, INET6_ADDRSTRLEN) == NULL)
+		return (-1);
+	if ((gen->sock_server = socket(node.ai_family, node.ai_socktype,
+			node.ai_protocol)) < 0)
+		return (-1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	return (true);
+}
+
+int							init_server(t_gen *gen)
+{
+	int						ret;
+	struct addrinfo			*curs;
+
 	if (gen == NULL || gen->port == NULL)
 		return (-1);
 	gen->hints.ai_family = AF_INET6;
 	gen->hints.ai_socktype = SOCK_STREAM;
 	gen->hints.ai_flags = AI_PASSIVE;
-	printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
-	return (0);
+	if ((ret = getaddrinfo(NULL, gen->port, &gen->hints, &gen->ptr)) != 0)
+		return (-1);
+	if ((curs = gen->ptr) == NULL)
+		return (-1);
+	while (curs != NULL)
+	{
+		if (check_node(gen, *curs) == true)
+		{
+			printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
+			return (0);
+		}
+		curs = curs->ai_next;
+	}
+	return (-1);
 }
 
-int						loop_server(void)
+int							loop_server(void)
 {
-	t_gen				*gen;
+	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);

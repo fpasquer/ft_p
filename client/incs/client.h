@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: florianpasquereau <florianpasquereau@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 17:24:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 20:57:32 by florianpasq      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CLIENT_H
 
 # define SIZE_CMD 1000
-
 
 # define PROMPT "?> "
 # define LEN_PROMPT ft_strlen(PROMPT)
