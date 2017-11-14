@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/13 10:33:32 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/13 11:40:27 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBRARY			= ../libft/libft.a
 
 OTHERS			= libft Makefile auteur
 ARCH			= 64
-OTHER_FLAGS 	= -lncurses
+OTHER_FLAGS 	= -lpthread
 
 GCC				= gcc
 CFLAGS			= -Wall -Wextra -Werror -o3

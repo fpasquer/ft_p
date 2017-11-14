@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 09:30:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/13 11:40:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int							main(int argc, char **argv)
 #endif
 	if (argc <= 2)
 		need_param(argv[0]);
-
 	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL || check_port(
 			(gen->i_client.port = argv[2])) == false)
 		del_general(EXIT_FAILURE);
