@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:19:45 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 10:50:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:04:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void						del_general(int const ret)
 #endif
 	if ((gen = get_general(NULL)) != NULL)
 	{
+		if (gen->ptr != NULL)
+			freeaddrinfo(gen->ptr);
 		printf("\nServer closed\n");
 	}
 	exit(ret);

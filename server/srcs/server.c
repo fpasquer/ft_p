@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 16:38:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/14 18:03:28 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ int						loop_server(void)
 
 int						init_server(t_gen *gen)
 {
-	if (gen == NULL)
+	if (gen == NULL || gen->port == NULL)
 		return (-1);
+	gen->hints.ai_family = AF_INET6;
+	gen->hints.ai_socktype = SOCK_STREAM;
+	gen->hints.ai_flags = AI_PASSIVE;
 	printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
 	return (0);
 }
