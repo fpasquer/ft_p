@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 21:42:26 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 08:41:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static char				*get_node_ip(struct addrinfo const *node, char *buff,
 	return (buff);
 }
 
-/*static int					print_addr(struct addrinfo const *node)
+#ifdef DEBUG
+static int					print_addr(struct addrinfo const *node)
 {
+
 	char					buff_addr[INET6_ADDRSTRLEN];
 	size_t					size_buff;
 
@@ -40,17 +42,18 @@ static char				*get_node_ip(struct addrinfo const *node, char *buff,
 		return (-1);
 	size_buff = sizeof(buff_addr);
 	ft_bzero(buff_addr, size_buff);
-	printf("ai_flags     = %d\n", node->ai_flags);
-	printf("ai_family    = %s\n", node->ai_family == AF_INET ? "IPV4" : "IPV6");
-	printf("ai_socktype  = %d\n", node->ai_socktype);
-	printf("ai_addrlen   = %zd\n", node->ai_addrlen);
+	fprintf(debug, "ai_flags     = %d\n", node->ai_flags);
+	fprintf(debug, "ai_family    = %s\n", node->ai_family == AF_INET ? "IPV4" : "IPV6");
+	fprintf(debug, "ai_socktype  = %d\n", node->ai_socktype);
+	fprintf(debug, "ai_addrlen   = %zd\n", node->ai_addrlen);
 	if (get_node_ip(node, buff_addr, size_buff) != NULL)
-		printf("ai_addr      = %s\n", buff_addr);
-	printf("ai_canonname = %s\n\n", node->ai_canonname);
+		fprintf(debug, "ai_addr      = %s\n", buff_addr);
+	fprintf(debug, "ai_canonname = %s\n\n", node->ai_canonname);
 	return (0);
 }
+#endif
 
-int							loop_server(void)
+/*int							loop_server(void)
 {
 	struct addrinfo			hints;
 	struct addrinfo			*curs;
@@ -75,34 +78,36 @@ int							loop_server(void)
 	return (0);
 }*/
 
-static int					check_node(t_gen *gen, struct addrinfo const node)
+static int					config_server(t_gen *gen,
+		struct addrinfo const node)
 {
 	char					buff_addr[INET6_ADDRSTRLEN];
+	int						optval;
 
-	if (get_node_ip(&node, buff_addr, INET6_ADDRSTRLEN) == NULL)
+#ifdef DEBUG
+	print_addr(&node);
+#endif
+	if (gen == NULL || get_node_ip(&node, buff_addr, INET6_ADDRSTRLEN) == NULL)
 		return (-1);
 	if ((gen->sock_server = socket(node.ai_family, node.ai_socktype,
 			node.ai_protocol)) < 0)
 		return (-1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
+	if (node.ai_family == AF_INET6 && setsockopt(gen->sock_server, IPPROTO_IPV6
+			, IPV6_V6ONLY, &optval, sizeof(optval)) == -1)
+		return (-1);
+	if (bind(gen->sock_server, node.ai_addr, node.ai_addrlen) == -1)
+		return (-1);
 	return (true);
+}
+
+static int					creat_server(t_gen *gen)
+{
+	if (gen == NULL)
+		return (-1);
+	if (listen(gen->sock_server, 0) == -1)
+		return (-1);
+	printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
+	return (0);
 }
 
 int							init_server(t_gen *gen)
@@ -121,11 +126,8 @@ int							init_server(t_gen *gen)
 		return (-1);
 	while (curs != NULL)
 	{
-		if (check_node(gen, *curs) == true)
-		{
-			printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
-			return (0);
-		}
+		if (config_server(gen, *curs) == true)
+			return (creat_server(gen));
 		curs = curs->ai_next;
 	}
 	return (-1);
@@ -134,12 +136,18 @@ int							init_server(t_gen *gen)
 int							loop_server(void)
 {
 	t_gen					*gen;
+	socklen_t				clientAddressLength;
+	struct sockaddr_storage	clientAddress;
 
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
 	while (1)
 	{
-		;
+		printf("Attente de connexion sur le port %s\n", gen->port);
+		if ((gen->sock_client = accept(gen->sock_server, (struct sockaddr *)
+				&clientAddress, &clientAddressLength)) == -1)
+			return (-1);
+		printf("Success\n");
 	}
 	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:11:49 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 17:41:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 07:32:21 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../general_incs/general.h"
 
 #define MAX_PORT 65535
-#define MIN_PORT 1
+#define MIN_PORT 1500
 
 char						*get_ip(char const *ip, t_type_ip *type_ip)
 {

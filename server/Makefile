@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/13 11:40:27 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/15 08:48:29 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,3 +60,5 @@ fclean : clean
 	make -C ../libft fclear
 
 re : fclean All
+
+.PHONY: All clean fclean re

@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/14 09:33:03 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/15 08:47:17 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,3 +68,5 @@ fclean : clean
 	make -C libft fclear
 
 re : fclean All
+
+.PHONY: All client server clean fclean re
