@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:19:45 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 18:04:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 09:50:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void						del_general(int const ret)
 	{
 		if (gen->ptr != NULL)
 			freeaddrinfo(gen->ptr);
+		if (gen->sock_client >= 0)
+			close(gen->sock_client);
+		if (gen->sock_server >= 0)
+			close(gen->sock_server);
 		printf("\nServer closed\n");
 	}
 	exit(ret);
