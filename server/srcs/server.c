@@ -6,13 +6,13 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 08:41:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 09:31:58 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
 
-static char				*get_node_ip(struct addrinfo const *node, char *buff,
+/*static char				*get_node_ip(struct addrinfo const *node, char *buff,
 		size_t const buff_size)
 {
 	void				*sin_addr;
@@ -53,7 +53,7 @@ static int					print_addr(struct addrinfo const *node)
 }
 #endif
 
-/*int							loop_server(void)
+int							loop_server(void)
 {
 	struct addrinfo			hints;
 	struct addrinfo			*curs;
@@ -81,20 +81,17 @@ static int					print_addr(struct addrinfo const *node)
 static int					config_server(t_gen *gen,
 		struct addrinfo const node)
 {
-	char					buff_addr[INET6_ADDRSTRLEN];
 	int						optval;
 
-#ifdef DEBUG
-	print_addr(&node);
-#endif
-	if (gen == NULL || get_node_ip(&node, buff_addr, INET6_ADDRSTRLEN) == NULL)
+	if (gen == NULL)
 		return (-1);
 	if ((gen->sock_server = socket(node.ai_family, node.ai_socktype,
 			node.ai_protocol)) < 0)
 		return (-1);
-	if (node.ai_family == AF_INET6 && setsockopt(gen->sock_server, IPPROTO_IPV6
-			, IPV6_V6ONLY, &optval, sizeof(optval)) == -1)
-		return (-1);
+	if (node.ai_family == AF_INET6)
+		if (setsockopt(gen->sock_server, IPPROTO_IPV6, IPV6_V6ONLY, &optval,
+				sizeof(optval)) == -1)
+			return (-1);
 	if (bind(gen->sock_server, node.ai_addr, node.ai_addrlen) == -1)
 		return (-1);
 	return (true);

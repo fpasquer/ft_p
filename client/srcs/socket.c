@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   connexion.c                                        :+:      :+:    :+:   */
+/*   socket.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 08:05:54 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/13 09:36:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 09:32:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int					login_server_ipv4(t_gen *gen)
 	ft_bzero(&sin, sizeof(sin));
 	if (inet_pton(AF_INET, gen->i_client.ip, &sin.sin_addr.s_addr) != 1)
 		return (-1);
-	sin.sin_family = AF_INET;
+		sin.sin_family = AF_INET;
 	sin.sin_port = htons(ft_atoi(gen->i_client.port));
 	if (connect(gen->i_client.fd, (struct sockaddr*)&sin, sizeof(sin)) == -1)
 		return (-1);
