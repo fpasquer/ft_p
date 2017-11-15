@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:40:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:34:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int							loop_server(void)
 		printf("Attente de connexion sur le port %s\n", gen->port);
 		if ((gen->sock_client = accept(gen->sock_server, (struct sockaddr *)
 				&clientAddress, &clientAddressLength)) == -1)
+			return (-1);
+		if (send_cwd_server(gen) != 0)
 			return (-1);
 		printf("Success\n");
 	}

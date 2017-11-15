@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 10:04:37 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:34:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ void						del_general(int const ret);
 **	signaux.c
 */
 int							init_signaux(void);
+
+/*
+**	send_cwd_client
+*/
+int							send_cwd_server(t_gen const *gen);
 
 #endif
