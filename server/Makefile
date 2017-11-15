@@ -6,14 +6,14 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/15 08:48:29 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/15 11:13:07 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= server
 
 SRC_NAME		= main.c signaux.c general.c server.c
-SRC_NAME_GEN	= check_ip_port.c
+SRC_NAME_GEN	= check_ip_port.c cwd_manager.c
 
 INCLUDES		= server.h
 
@@ -21,7 +21,7 @@ LIBRARY			= ../libft/libft.a
 
 OTHERS			= libft Makefile auteur
 ARCH			= 64
-OTHER_FLAGS 	= -lpthread
+OTHER_FLAGS 	= -lpthread -lncurses
 
 GCC				= gcc
 CFLAGS			= -Wall -Wextra -Werror -o3

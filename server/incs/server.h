@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 08:01:44 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 10:04:37 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 typedef struct				s_gen
 {
 	char					*port;			//port d' ecoute du server
-	struct addrinfo			hints;			//pour parametrer le server
-	struct addrinfo			*ptr;			//pointeur du debut de la liste
 	int						sock_server;	//fd de socket server
 	int						sock_client;	//fd de socket client
+	struct addrinfo			hints;			//pour parametrer le server
+	struct addrinfo			*ptr;			//pointeur du debut de la liste
+	t_list_cwd				cwd_server;		//liste fichiers du server
 }							t_gen;
 
 /*

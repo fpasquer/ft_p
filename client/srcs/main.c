@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 09:31:19 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 11:30:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int							main(int argc, char **argv)
 	init_signaux();
 	gen->scr = init_ncurses();
 	gen->win = SERVER;
-	if (login_server() != 0 || set_list_cwd(&gen->cwd_client) != 0 ||
+	if (login_server() != 0 || set_list_cwd(&gen->cwd_client, NULL, gen->cwd_client.cwd_show) != 0 ||
 			print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
 			? true : false) != 0 || print_infos() != 0)
 		del_general(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 17:25:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 11:24:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,17 @@ typedef struct				s_coord
 typedef struct				s_list_cwd
 {
 	char					cwd[SIZE_CWD];
+	char					cwd_show[SIZE_CWD];
 	char					**list;
 	int						nb_row;
 	int						decalage;
 }							t_list_cwd;
+
+typedef struct				s_data
+{
+	size_t					size;
+	void					*data;
+}							t_data;
 
 typedef struct				s_cmd_manager
 {
@@ -80,7 +87,8 @@ ssize_t						get_key_pressed(char buff[SIZE_BUFF]);
 /*
 **	gestion cwd client server
 */
-int							set_list_cwd(t_list_cwd *cwd);
+int							set_list_cwd(t_list_cwd *cwd, char const *cwd_show,
+	char dest[SIZE_CWD]);
 int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 		bool const selected);
 void						del_list_cwd(t_list_cwd cwd);

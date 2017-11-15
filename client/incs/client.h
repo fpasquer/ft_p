@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florianpasquereau <florianpasquereau@st    +#+  +:+       +#+        */
+/*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 20:57:32 by florianpasq      ###   ########.fr       */
+/*   Updated: 2017/11/15 11:02:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct				s_gen
 	t_info_client			i_client;		//info sur le client
 	t_ncurses				scr;			//ensembles des fenetres
 	t_list_cwd				cwd_client;		//liste fichiers du client
-	t_list_cwd				cwd_server;		//liste fichiers du server
+	t_list_cwd				*cwd_server;		//liste fichiers du serveur
 	t_win					win;			//pour savoir dans quelle fenetre j'execute les commandes
 }							t_gen;
 
@@ -113,5 +113,10 @@ int							print_infos(void);
 */
 int							login_server(void);
 void						logout_server(void);
+
+/*
+**	send_cmds_server
+*/
+int							set_list_cwd_server(void);
 
 #endif

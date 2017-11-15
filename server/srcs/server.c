@@ -6,11 +6,14 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 09:31:58 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 11:30:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
+#ifdef DEBUG
+	#include <ncurses.h>
+#endif
 
 /*static char				*get_node_ip(struct addrinfo const *node, char *buff,
 		size_t const buff_size)
@@ -135,9 +138,19 @@ int							loop_server(void)
 	t_gen					*gen;
 	socklen_t				clientAddressLength;
 	struct sockaddr_storage	clientAddress;
+	//t_list_cwd				cwd;
 
-	if ((gen = get_general(NULL)) == NULL)
+	if ((gen = get_general(NULL)) == NULL /*|| set_list_cwd(&cwd) != 0*/)
 		return (-1);
+// #ifdef DEBUG
+// 	int i = 0;
+// 	while (cwd.list[i] != NULL)
+// 	{
+// 		printf("\t%s\n", cwd.list[i]);
+// 		i++;
+// 	}
+// 	del_list_cwd(cwd);
+// #endif
 	while (1)
 	{
 		printf("Attente de connexion sur le port %s\n", gen->port);

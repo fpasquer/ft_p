@@ -6,19 +6,24 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 07:57:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 11:29:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../general_incs/general.h"
 
-int							set_list_cwd(t_list_cwd *cwd)
+int							set_list_cwd(t_list_cwd *cwd, char const *cwd_show,
+		char dest[SIZE_CWD])
 {
-	if (cwd == NULL)
+	if (cwd == NULL || dest == NULL)
 		return (-1);
 	ft_bzero(cwd, sizeof(*cwd));
 	if (getcwd(cwd->cwd, SIZE_CWD) == NULL || (cwd->nb_row =
 			ft_scandir(cwd->cwd, &cwd->list)) < 0)
+		return (-1);
+		printf("ici\n");
+	if (ft_strncpy(dest, cwd_show == NULL ? cwd->cwd : cwd_show, SIZE_CWD) ==
+			NULL)
 		return (-1);
 	return (0);
 }
@@ -40,7 +45,7 @@ int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 		return (-1);
 	if (cwd.list != NULL)
 	{
-		mvwprintw(win, 1, 1, "%s", cwd.cwd);
+		mvwprintw(win, 1, 1, "%s", cwd.cwd_show);
 		while (cwd.list[i] != NULL && i + cwd.decalage < LINES - HIGHT_INFO_WIN
 				- HIGHT_TERM_WIN - 2)
 		{
