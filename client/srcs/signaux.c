@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 17:55:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 10:55:44 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:44:04 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void				func_sig_winch(int sig)
 {
 	t_gen				*gen;
 
-	if ((gen = get_general(NULL)) == NULL || gen->cwd_server == NULL)
+	if ((gen = get_general(NULL)) == NULL)
 		return ;
 	del_ncurses(gen);
 	gen->scr = init_ncurses();
@@ -30,7 +30,7 @@ static void				func_sig_winch(int sig)
 		show_str_ncurses("Screen too small");
 	else
 		if (print_list_cwd(gen->cwd_client, gen->scr.client, gen->win ==
-				CLIENT ? true : false) != 0 || print_list_cwd(*gen->cwd_server,
+				CLIENT ? true : false) != 0 || print_list_cwd(gen->cwd_server,
 				gen->scr.server, gen->win == SERVER ? true : false) != 0 ||
 				print_infos() != 0)
 			return ;

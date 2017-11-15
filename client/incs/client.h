@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:02:42 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:37:38 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct				s_gen
 	t_info_client			i_client;		//info sur le client
 	t_ncurses				scr;			//ensembles des fenetres
 	t_list_cwd				cwd_client;		//liste fichiers du client
-	t_list_cwd				*cwd_server;		//liste fichiers du serveur
+	t_list_cwd				cwd_server;		//liste fichiers du serveur
 	t_win					win;			//pour savoir dans quelle fenetre j'execute les commandes
 }							t_gen;
 

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:34:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:55:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int					set_show_windows(t_gen *gen)
 			gen->cwd_client.cwd_show) != 0 || print_list_cwd(gen->cwd_client,
 			gen->scr.client, gen->win == CLIENT ? true : false) != 0 ||
 			print_infos() != 0)
+		return (-1);
+	if (set_list_cwd_server() != 0 || print_list_cwd(gen->cwd_server,
+			gen->scr.server, gen->win == SERVER ? true : false) != 0)
 		return (-1);
 	return (0);
 }

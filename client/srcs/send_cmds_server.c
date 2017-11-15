@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:37:10 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:03:05 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:58:29 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int							set_list_cwd_server(void)
 {
-	size_t					size;
 	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL || gen->i_client.fd == 0)
 		return (-1);
-	if (recv(gen->i_client.fd, &size, sizeof(size), 0) == -1)
+	if ((gen->cwd_server.list = get_tab_2d(gen->i_client.fd)) == NULL)
 		return (-1);
-	if (size > 0)
-	{
-		if ((gen->cwd_server = ft_memalloc(size)) == NULL)
-			return (-1);
-		if (recv(gen->i_client.fd, &gen->cwd_server, size, 0) == -1)
-			return (-1);
-	}
+	if (recv(gen->i_client.fd, gen->cwd_server.cwd, SIZE_CWD, 0) < 0)
+		return (-1);
+	if (recv(gen->i_client.fd, gen->cwd_server.cwd_show, SIZE_CWD, 0) < 0)
+		return (-1);
+	gen->cwd_server.nb_row = (int)len_y(gen->cwd_server.list);
+#ifdef DEBUG
+	unsigned int			i;
+
+	i = 0;
+	while (gen->cwd_server.list[i] != NULL)
+		fprintf(debug, "%s\n", gen->cwd_server.list[i++]);
+#endif
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 13:34:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/15 18:29:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ static int					creat_server(t_gen *gen)
 		return (-1);
 	if (set_list_cwd(&gen->cwd_server, "/", gen->cwd_server.cwd_show) != 0)
 		return (-1);
+	if (getcwd(gen->racine, SIZE_CWD) == NULL)
+		return (-1);
+	if (ft_strncpy(gen->current_dir, "/", SIZE_CWD) != gen->current_dir)
+		return (-1);
 	printf("\e[1;1H\e[2JServer opened on the port %s\n", gen->port);
 	return (0);
 }
@@ -143,15 +147,6 @@ int							loop_server(void)
 
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
-// #ifdef DEBUG
-// 	int i = 0;
-// 	while (cwd.list[i] != NULL)
-// 	{
-// 		printf("\t%s\n", cwd.list[i]);
-// 		i++;
-// 	}
-// 	del_list_cwd(cwd);
-// #endif
 	while (1)
 	{
 		printf("Attente de connexion sur le port %s\n", gen->port);
@@ -160,7 +155,6 @@ int							loop_server(void)
 			return (-1);
 		if (send_cwd_server(gen) != 0)
 			return (-1);
-		printf("Success\n");
 	}
 	return (0);
 }
