@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:37:10 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 18:58:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/16 06:39:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,12 @@ int							set_list_cwd_server(void)
 		return (-1);
 	if ((gen->cwd_server.list = get_tab_2d(gen->i_client.fd)) == NULL)
 		return (-1);
-	if (recv(gen->i_client.fd, gen->cwd_server.cwd, SIZE_CWD, 0) < 0)
-		return (-1);
 	if (recv(gen->i_client.fd, gen->cwd_server.cwd_show, SIZE_CWD, 0) < 0)
 		return (-1);
+	if (recv(gen->i_client.fd, gen->cwd_server.cwd, SIZE_CWD, 0) < 0)
+		return (-1);
 	gen->cwd_server.nb_row = (int)len_y(gen->cwd_server.list);
-#ifdef DEBUG
-	unsigned int			i;
-
-	i = 0;
-	while (gen->cwd_server.list[i] != NULL)
-		fprintf(debug, "%s\n", gen->cwd_server.list[i++]);
-#endif
+	if (add_infos("Update content server") != 0)
+		return (-1);
 	return (0);
 }
