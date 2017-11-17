@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:28:57 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 08:57:51 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 13:41:03 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int							loop_server(void)
 	if (send_cwd_server(gen) != 0)
 		return (-1);
 	while (1)
-		if (get_next_recv(gen->sock_client, &gen->cmd) > 0)
+		if ((gen->cmd = get_tab(gen->sock_client)) != NULL)
 			if (cmds_manager(gen) != 0)
 				break ;
 	return (0);
