@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 09:03:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 13:37:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ typedef enum				e_type_ip
 	IPV4 = AF_INET, IPV6 = AF_INET6
 }							t_type_ip;
 
+typedef enum				e_type_cmp
+{
+	STRCMP, STRNCMP
+}							t_type_cmp;
+
 typedef struct				s_coord
 {
 	int						y;
@@ -77,6 +82,7 @@ typedef struct				s_cmd_manager
 {
 	char					*cmd;
 	size_t					len_cmp;
+	t_type_cmp				type;
 	int						(*f)(void);
 }							t_cmd_manager;
 
@@ -106,8 +112,10 @@ int							ipv4_mapped_ipv6(char const *ipv4, char *dest,
 /*
 **	send_get_data
 */
-int							send_tab_2d(int sock, char **tab);
-char						**get_tab_2d(int sock);
-ssize_t						get_next_recv(int const sock, char **cmd);
+int							send_tab(int const sock, char *str);
+char						*get_tab(int const sock);
+int							send_tab_2d(int const sock, char **tab);
+char						**get_tab_2d(int const sock);
+// ssize_t						get_next_recv(int const sock, char **cmd);
 
 #endif

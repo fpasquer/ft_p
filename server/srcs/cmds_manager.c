@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 08:48:14 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 14:10:09 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 14:33:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ int							cmds_manager(t_gen *gen)
 	if (gen->cmd[0] != '\0')
 		printf("\tUser[%3d]: cmd not found '%s'\n", gen->sock_client, gen->cmd);
 	ft_memdel((void**)&gen->cmd);
+	if (send_tab(gen->sock_client, "ft_p: command not found") < 0)
+		return (-1);
 	return (0);
 }
