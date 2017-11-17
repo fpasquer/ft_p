@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 19:08:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:12:23 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int							func_option_down(void);
 **	term
 */
 int							loop_term(t_gen *gen);
+int							send_exec_cmd(t_gen *gen);
 
 /*
 **	ncurses

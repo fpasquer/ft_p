@@ -6,11 +6,35 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 19:10:05 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:23:39 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
+
+static int					error_cmd(char const *error)
+{
+	if (error == NULL)
+		return (-1);
+	if (add_infos(error) != 0|| print_infos() != 0)
+		return (-1);
+	return (0);
+}
+
+static int					cmd_for_server(t_gen *gen)
+{
+	char					*info;
+
+	if (gen == NULL || gen->i_client.fd <= 0)
+		return (-1);
+	if (send_tab(gen->i_client.fd, gen->cmd) < 0 || (info =
+			get_tab(gen->i_client.fd)) == NULL)
+		return (-1);
+	if (add_infos(info) != 0)
+		return (-1);
+	ft_memdel((void**)&info);
+	return (0);
+}
 
 int							func_exit(void)
 {
@@ -120,7 +144,28 @@ int							func_ls(void)
 
 int							func_cd(void)
 {
-	return (0);
+	char					*path_full;
+	char					*path;
+	int						ret;
+	unsigned int			i;
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+
+	if (gen->win == SERVER)
+		return (cmd_for_server(gen));//a modifier
+	i = 0;
+	if ((*(path = &gen->cmd[3])) == '\0')
+		return (error_cmd("CD need dest path"));
+	while (ft_isspace(path[i]) == true)
+		i++;
+	if ((path_full = path[i] == '/' ? ft_strdup(&path[i]) : ft_multijoin(3,
+			gen->cwd_client.cwd, "/", &path[i])) == NULL)
+		return (-1);
+	ret = chdir(path_full);
+	ft_memdel((void**)&path_full);
+	return (ret == -1 ? error_cmd("CD path unvalable") : func_refresh_client());
 }
 
 int							func_get(void)
@@ -154,6 +199,9 @@ int							func_refresh_client(void)
 
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
+#ifdef DEBUG
+	fprintf(debug, "%s %d\n", __FILE__, __LINE__);
+#endif
 	del_list_cwd(gen->cwd_client);
 	if (set_list_cwd(&gen->cwd_client, NULL, gen->cwd_client.cwd_show) != 0 ||
 			print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT

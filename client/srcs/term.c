@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 19:06:12 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 20:12:31 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ t_cmd_manager				g_cmds[] = {
 	{OPTION_UP, 6, STRCMP, func_option_up},
 	{OPTION_DOWN, 6, STRCMP, func_option_down},
 	{"QUIT", 4, STRCMP, func_exit},
+	{"LS", 2, STRCMP, func_ls},
+	{"CD ", 3, STRNCMP, func_cd},
+	{"PWD", 3, STRCMP, func_pwd},
 	{NULL, 0, STRCMP, NULL}
 };
 
@@ -85,7 +88,7 @@ int							get_cmd(char cmd[SIZE_CMD], size_t *i,
 	return (len < 0 ? -1 : 0);
 }
 
-static int					send_exec_cmd(t_gen *gen)
+int							send_exec_cmd(t_gen *gen)
 {
 	unsigned int			i;
 	char					*info;
