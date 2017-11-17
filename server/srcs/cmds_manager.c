@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 08:48:14 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 14:33:02 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:25:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_cmd_manager				g_cmds[] = {
 	{"PWD", 3, STRCMP, func_pwd},
 	{"LOGIN ", 6, STRNCMP, func_login},
 	{"LOGOUT", 6, STRCMP, func_logout},
+	{"REFRESH", 7, STRCMP, func_refresh_server},
 	{NULL, 0, STRCMP, NULL}
 };
 

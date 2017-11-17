@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:37:10 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/16 06:39:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:41:08 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int							set_list_cwd_server(void)
 {
 	t_gen					*gen;
 
-	if ((gen = get_general(NULL)) == NULL || gen->i_client.fd == 0)
+	if ((gen = get_general(NULL)) == NULL || gen->i_client.fd <= 0)
 		return (-1);
 	if ((gen->cwd_server.list = get_tab_2d(gen->i_client.fd)) == NULL)
 		return (-1);

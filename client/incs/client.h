@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 18:37:38 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 14:57:55 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int							func_pwd(void);
 int							func_login(void);
 int							func_logout(void);
 int							func_refresh_client(void);
+int							func_refresh_server(void);
 
 /*
 **	term

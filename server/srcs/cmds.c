@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 08:45:03 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 14:36:34 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:52:06 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int							func_ls(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "LS") < 0)
+	if (send_tab(gen->sock_client, "LS success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -30,7 +30,7 @@ int							func_cd(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "CD") < 0)
+	if (send_tab(gen->sock_client, "CD success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -42,7 +42,7 @@ int							func_get(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "GET") < 0)
+	if (send_tab(gen->sock_client, "GET success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -54,7 +54,7 @@ int							func_put(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "PUT") < 0)
+	if (send_tab(gen->sock_client, "PUT success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -66,7 +66,7 @@ int							func_pwd(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "PWD") < 0)
+	if (send_tab(gen->sock_client, "PWD success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -78,7 +78,7 @@ int							func_login(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "LOGIN") < 0)
+	if (send_tab(gen->sock_client, "LOGIN success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -90,7 +90,7 @@ int							func_logout(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "LOGOUT") < 0)
+	if (send_tab(gen->sock_client, "LOGOUT success") < 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
@@ -102,7 +102,9 @@ int							func_refresh_server(void)
 
 	if ((gen =  get_general(NULL)) == NULL || gen->sock_client <= 0)
 		return (-1);
-	if (send_tab(gen->sock_client, "Refresh server") < 0)
+	if (set_list_cwd(&gen->cwd_server, "/", gen->cwd_server.cwd_show) != 0)
+		return (-1);
+	if (send_cwd_server(gen) != 0)
 		return (-1);
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	return (0);
