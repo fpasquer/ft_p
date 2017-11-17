@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 15:53:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 19:10:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,82 @@ int							func_change_win(void)
 	if (print_list_cwd(gen->cwd_server, gen->scr.server, gen->win == SERVER ?
 			true : false) != 0)
 		return (-1);
+	return (0);
+}
+
+int							func_shift_up(void)
+{
+	int						nb_row_scr;
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	nb_row_scr = LINES - 2 - HIGHT_INFO_WIN - HIGHT_TERM_WIN;
+	if (gen->cwd_client.nb_row > nb_row_scr + gen->cwd_client.decalage)
+	{
+		gen->cwd_client.decalage++;
+		if (print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
+				? true : false) != 0)
+			return (-1);
+		if (add_infos("Client scroll up") != 0)
+			return (-1);
+	}
+	return (0);
+}
+
+int							func_shift_down(void)
+{
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (gen->cwd_client.decalage > 0)
+	{
+		gen->cwd_client.decalage--;
+		if (print_list_cwd(gen->cwd_client, gen->scr.client, gen->win == CLIENT
+				? true : false) != 0)
+			return (-1);
+		if (add_infos("Client scroll down") != 0)
+			return (-1);
+	}
+	return (0);
+}
+
+int							func_option_up(void)
+{
+	int						nb_row_scr;
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	nb_row_scr = LINES - 2 - HIGHT_INFO_WIN - HIGHT_TERM_WIN;
+	if (gen->cwd_server.nb_row > nb_row_scr + gen->cwd_server.decalage)
+	{
+		gen->cwd_server.decalage++;
+		if (print_list_cwd(gen->cwd_server, gen->scr.server, gen->win == SERVER
+				? true : false) != 0)
+			return (-1);
+		if (add_infos("Server scroll up") != 0)
+			return (-1);
+	}
+	return (0);
+}
+
+int							func_option_down(void)
+{
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (gen->cwd_server.decalage > 0)
+	{
+		gen->cwd_server.decalage--;
+		if (print_list_cwd(gen->cwd_server, gen->scr.server, gen->win == SERVER
+				? true : false) != 0)
+			return (-1);
+		if (add_infos("Server scroll down") != 0)
+			return (-1);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 15:55:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 19:06:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,20 @@
 # define KEY_ESC_ (char[]){27, 0, 0, 0, 0, 0, 0}
 # define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
 # define KEY_F7_ (char[]){27, 91, 49, 56, 126, 0, 0, 0, 0}
+# define SHIFT_UP (char[]){27, 91, 49, 59, 50, 65, 0, 0, 0}
+# define SHIFT_DOWN (char[]){27, 91, 49, 59, 50, 66, 0, 0, 0}
+# define OPTION_UP (char[]){27, 27, 91, 65, 0, 0, 0, 0, 0}
+# define OPTION_DOWN (char[]){27, 27, 91, 66, 0, 0, 0, 0, 0}
 
 t_cmd_manager				g_cmds[] = {
 	{KEY_ESC_, 2, STRCMP, func_exit},
 	{KEY_F5_, 6, STRCMP, func_refresh_client},
 	{KEY_F6_, 6, STRCMP, func_refresh_server},
 	{KEY_F7_, 6, STRCMP, func_change_win},
+	{SHIFT_UP, 6, STRCMP, func_shift_up},
+	{SHIFT_DOWN, 6, STRCMP, func_shift_down},
+	{OPTION_UP, 6, STRCMP, func_option_up},
+	{OPTION_DOWN, 6, STRCMP, func_option_down},
 	{"QUIT", 4, STRCMP, func_exit},
 	{NULL, 0, STRCMP, NULL}
 };

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:29:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 18:58:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 	if (cwd.list != NULL)
 	{
 		mvwprintw(win, 1, 1, "%s", cwd.cwd_show);
-		while (cwd.list[i] != NULL && i + cwd.decalage < LINES - HIGHT_INFO_WIN
-				- HIGHT_TERM_WIN - 2)
+		while (cwd.list[i + cwd.decalage] != NULL && i < LINES -
+				HIGHT_INFO_WIN - HIGHT_TERM_WIN - 3)
 		{
-			mvwprintw(win, i + 2, 1, "\t%s", cwd.list[i]);
+			mvwprintw(win, i + 2, 1, "\t%s", cwd.list[i + cwd.decalage]);
 			i++;
 		}
 	}

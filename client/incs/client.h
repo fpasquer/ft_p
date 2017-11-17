@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 14:57:55 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 19:08:43 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ typedef struct				s_ncurses
 	WINDOW					*term;			//fenetre term
 }							t_ncurses;
 
+typedef struct				s_lines
+{
+	char					*cmd;
+	char 					*result;
+	size_t					len_cmd;
+	size_t					len_result;
+	struct s_lines			*next;
+}							t_lines;
+
 typedef struct				s_gen
 {
 	char					cmd[SIZE_CMD];	//commandes tapee dans le shell
@@ -79,6 +88,10 @@ int							func_login(void);
 int							func_logout(void);
 int							func_refresh_client(void);
 int							func_refresh_server(void);
+int							func_shift_up(void);
+int							func_shift_down(void);
+int							func_option_up(void);
+int							func_option_down(void);
 
 /*
 **	term
