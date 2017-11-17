@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 18:23:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 08:56:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct				s_gen
 											//path racine server
 	char					current_dir[SIZE_CWD];
 											//path de la position dans le server
+	char					*cmd;			//cmd qui vient du client
 	int						sock_server;	//fd de socket server
 	int						sock_client;	//fd de socket client
 	struct addrinfo			hints;			//pour parametrer le server
@@ -54,5 +55,22 @@ int							init_signaux(void);
 **	send_cwd_client
 */
 int							send_cwd_server(t_gen const *gen);
+
+/*
+**	cmds
+*/
+int							func_ls(void);
+int							func_cd(void);
+int							func_get(void);
+int							func_put(void);
+int							func_pwd(void);
+int							func_login(void);
+int							func_logout(void);
+int							func_refresh_server(void);
+
+/*
+**	cmds_manager
+*/
+int							cmds_manager(t_gen *gen);
 
 #endif

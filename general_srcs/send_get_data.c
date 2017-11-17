@@ -6,11 +6,13 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:51:17 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 18:54:19 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 08:30:41 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../general_incs/general.h"
+
+# define BUFF_SIZE_RECV 5
 
 static size_t				get_size_tab(char **list_cwd)
 {
@@ -72,4 +74,34 @@ char						**get_tab_2d(int sock)
 	list = ft_strsplit(buff, ' ');
 	ft_memdel((void**)&buff);
 	return (list);
+}
+
+ssize_t						get_next_recv(int const sock, char **cmd)
+{
+	char					*adr;
+	char					*tmp;
+	char					buff[BUFF_SIZE_RECV + 1];
+	ssize_t					len_recv;
+	ssize_t					len;
+
+	if (sock < 0 || cmd == NULL)
+		return (-1);
+	len = 0;
+	adr = NULL;
+	ft_bzero(buff, sizeof(*buff));
+	while (1)
+	{
+		if ((len_recv = recv(sock, buff, BUFF_SIZE_RECV, 0)) < 0)
+			return (-1);
+
+		len += len_recv;
+		if ((tmp = ft_strjoin(adr, buff)) == NULL)
+			return (-1);
+		ft_memdel((void**)&adr);
+		adr = tmp;
+		if (len_recv < BUFF_SIZE_RECV)
+			break ;
+	}
+	*cmd = adr;
+	return (len);
 }

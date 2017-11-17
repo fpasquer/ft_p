@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 13:33:17 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 19:27:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:51:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int							send_cwd_server(t_gen const *gen)
 		return (-1);
 	if (ft_strncpy(buff, gen->current_dir, SIZE_CWD) != buff)
 		return (-1);
-	printf("%s %d current_dir = %s\n", __FILE__, __LINE__, buff);
 	if (send(gen->sock_client, buff, SIZE_CWD, 0) < 0)
 		return (-1);
 	if (ft_strncpy(buff, gen->racine, SIZE_CWD) != buff)

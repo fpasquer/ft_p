@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 10:19:45 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 11:43:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 08:55:28 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void						del_general(int const ret)
 			close(gen->sock_client);
 		if (gen->sock_server >= 0)
 			close(gen->sock_server);
+		if (gen->cmd != NULL)
+			ft_memdel((void**)&gen->cmd);
 		del_list_cwd(gen->cwd_server);
 		printf("\nServer closed\n");
 	}

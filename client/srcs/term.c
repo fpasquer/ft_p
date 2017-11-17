@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 07:53:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 09:09:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 # define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
 
 t_cmd_manager				g_cmds[] = {
-	{KEY_ESC_, func_exit},
-	{KEY_F5_, func_refresh_client},
-	{KEY_F6_, func_change_win},
-	{"LS", func_ls},
-	{"CD", func_cd},
-	{"GET", func_get},
-	{"PUT", func_put},
-	{"PWD", func_pwd},
-	{"LOGIN", func_login},
-	{"LOGOUT", func_logout},
-	{"QUIT", func_exit},
-	{NULL, NULL}
+	{KEY_ESC_, 2, func_exit},
+	{KEY_F5_, 6, func_refresh_client},
+	{KEY_F6_, 6, func_change_win},
+	{"LS", 2, func_ls},
+	{"CD ", 3, func_cd},
+	{"GET ", 4, func_get},
+	{"PUT ", 4, func_put},
+	{"PWD", 3, func_pwd},
+	{"LOGIN ", 6, func_login},
+	{"LOGOUT", 6,func_logout},
+	{"QUIT", 4, func_exit},
+	{NULL, 0, NULL}
 };
 
 static bool					print_prompt_cmd(char const cmd[SIZE_CMD],
@@ -93,7 +93,7 @@ bool						term_size(void)
 int							loop_term(t_gen *gen)
 {
 	int						wrong_cmd;
-	int						i;
+	// int						i;
 	size_t					len_cmd;
 
 	if (gen == NULL || gen->scr.term == NULL)
@@ -104,11 +104,13 @@ int							loop_term(t_gen *gen)
 		{
 			if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0)
 				del_general(EXIT_FAILURE);
-			i = 0;
-			wrong_cmd = true;
-			while (g_cmds[i].cmd != NULL)
-				if (ft_strcmp(g_cmds[i++].cmd, gen->cmd) == 0)
-					wrong_cmd = g_cmds[i - 1].f();
+			if (send(gen->i_client.fd, gen->cmd, len_cmd, 0) < 0)
+				del_general(EXIT_FAILURE);
+			// i = 0;
+			// wrong_cmd = true;
+			// while (g_cmds[i].cmd != NULL)
+			// 	if (ft_strcmp(g_cmds[i++].cmd, gen->cmd) == 0)
+			// 		wrong_cmd = g_cmds[i - 1].f();
 		}
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 17:26:48 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 09:03:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct				s_data
 typedef struct				s_cmd_manager
 {
 	char					*cmd;
+	size_t					len_cmp;
 	int						(*f)(void);
 }							t_cmd_manager;
 
@@ -107,5 +108,6 @@ int							ipv4_mapped_ipv6(char const *ipv4, char *dest,
 */
 int							send_tab_2d(int sock, char **tab);
 char						**get_tab_2d(int sock);
+ssize_t						get_next_recv(int const sock, char **cmd);
 
 #endif

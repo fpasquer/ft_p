@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 20:59:26 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 20:59:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/17 07:28:09 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,6 @@ typedef struct				s_coord
 	int						y;
 	int						x;
 }							t_coord;
-
-int							get_mouse_coord(t_coord *c_mouse, int *button)
-{
-	MEVENT					event;
-
-	if (c_mouse == NULL || button == NULL)
-		return (-1);
-	if (getmouse(&event) != OK)
-		return (-1);
-	c_mouse->y = event.y;
-	c_mouse->x = event.x;
-	(*button) = event.bstate;
-	return (0);
-}
 
 int							main(void)
 {
