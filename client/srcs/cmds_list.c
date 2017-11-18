@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:03:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 21:07:37 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 21:19:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ int							print_list_cmd(t_cmd_list *list, int const max,
 	int						decalage;
 	int						ret;
 	static int				pos;
-// #ifdef DEBUG
-// 	fprintf(debug, "%s %d : max = %d y = %d\n", __FILE__, __LINE__,  max, y);
-// #endif
+
 	if (term == NULL || y < 0 || max <= 0 || y >= max - 1 || list == NULL)
 	{
 		pos = 0;

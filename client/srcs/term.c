@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 20:59:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 21:11:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,9 @@ static bool					print_prompt_cmd(char const cmd[SIZE_CMD],
 	wclear(gen->scr.term);
 	if ((y = print_list_cmd(gen->i_client.list_cmd, HIGHT_TERM_WIN - (LEN_PROMPT
 			+ len_cmd) / COLS + 1, 0, gen->scr.term)) < 0)
-#ifdef DEBUG
-	fprintf(debug, "%s %d : y = %d\n", __FILE__, __LINE__, y);
-#endif
-	// if ((y = print_list_cmd(gen->i_client.list_cmd, 5, 0, gen->scr.term)) < 0)
-	// 	return (-1);
 	mvwprintw(gen->scr.term, y, 0, "%s%s", PROMPT, cmd);
 	wrefresh(gen->scr.term);
-	return (len_cmd > 0 ? true : true); // return (true);
+	return (true);
 }
 
 int							get_cmd(char cmd[SIZE_CMD], size_t *i,
