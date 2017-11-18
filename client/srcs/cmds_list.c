@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:03:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 20:46:54 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 21:07:37 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ int							add_cmd_list(t_cmd_list **lst, char const *cmd,
 		char const *ret)
 {
 	t_cmd_list				*new;
+	size_t					len;
 
-	if (lst == NULL || cmd == NULL || (new = ft_memalloc(sizeof(*new))) == NULL)
+	if (lst == NULL || cmd == NULL)
 		return (-1);
-	if ((new->cmd_size = ft_strlen(cmd)) == 0)
+	if ((len = ft_strlen(cmd)) == 0)
+		return (0);
+	if ((new = ft_memalloc(sizeof(*new))) == NULL)
 		return (-1);
+	new->cmd_size = len;
 	new->ret_size = (ret == NULL) ? 0 : ft_strlen(ret);
 	if ((new->cmd = ft_strdup(cmd)) == NULL)
 		return (-1);
@@ -62,7 +66,9 @@ int							print_list_cmd(t_cmd_list *list, int const max,
 	int						decalage;
 	int						ret;
 	static int				pos;
-
+// #ifdef DEBUG
+// 	fprintf(debug, "%s %d : max = %d y = %d\n", __FILE__, __LINE__,  max, y);
+// #endif
 	if (term == NULL || y < 0 || max <= 0 || y >= max - 1 || list == NULL)
 	{
 		pos = 0;
