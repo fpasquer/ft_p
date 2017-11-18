@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 15:30:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:10:33 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ int							set_list_cwd_server(void);
 */
 int							add_cmd_list(t_cmd_list **lst, char const *cmd,
 		char const *ret);
+int							print_list_cmd(t_cmd_list *list, int const max,
+		int const i, WINDOW *term);
 int							del_cmd_list(t_cmd_list **lst);
 
 #endif

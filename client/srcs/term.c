@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 15:30:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 20:32:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ t_cmd_manager				g_cmds[] = {
 };
 
 static bool					print_prompt_cmd(char const cmd[SIZE_CMD],
-		int *wrong_cmd)
+		int *wrong_cmd, size_t const len_cmd)
 {
+	int						y;
 	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL || gen->scr.term == NULL ||
@@ -54,10 +55,14 @@ static bool					print_prompt_cmd(char const cmd[SIZE_CMD],
 	(*wrong_cmd) = false;
 	if (print_infos() != 0)
 		return (false);
-	wclear(gen->scr.term) ;
-	mvwprintw(gen->scr.term, 1 , 1, "%s%s", PROMPT, cmd);
+	wclear(gen->scr.term);
+	// if ((y = print_list_cmd(gen->i_client.list_cmd, HIGHT_TERM_WIN - (LEN_PROMPT
+	// 		+ len_cmd) / COLS - 1, 0, gen->scr.term)) < 0)
+	if ((y = print_list_cmd(gen->i_client.list_cmd, 5, 0, gen->scr.term)) < 0)
+		return (-1);
+	mvwprintw(gen->scr.term, y, 0, "%s%s", PROMPT, cmd);
 	wrefresh(gen->scr.term);
-	return (true);
+	return (len_cmd > 0 ? true : true); // return (true);
 }
 
 int							get_cmd(char cmd[SIZE_CMD], size_t *i,
@@ -71,7 +76,7 @@ int							get_cmd(char cmd[SIZE_CMD], size_t *i,
 		return (-1);
 	ft_bzero(cmd, sizeof(char) * SIZE_CMD);
 	(*i) = 0;
-	while ((*i) < SIZE_CMD - 1 && print_prompt_cmd(cmd, &wrong_cmd) == true)
+	while ((*i) < SIZE_CMD - 1 && print_prompt_cmd(cmd, &wrong_cmd, *i) == true)
 	{
 		if ((len = get_key_pressed(key)) < 0 ||
 				ft_strncmp(key, KEY_ENTER_, SIZE_BUFF) == 0)
