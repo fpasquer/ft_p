@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 15:08:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:42:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ void						del_general(int const ret)
 {
 	t_gen					*gen;
 
-#ifdef DEBUG
-	fclose(debug);
-#endif
 	logout_server();
 	if ((gen = get_general(NULL)) == NULL)
 		return ;
+	del_cmd_list(&gen->i_client.list_cmd);
 	if (gen->i_client.ip != NULL)
 		ft_memdel((void**)&gen->i_client.ip);
 	del_list_cwd(gen->cwd_client);
 	del_list_cwd(gen->cwd_server);
 	del_ncurses(gen);
 	ft_memdel((void**)&gen);
+#ifdef DEBUG
+	fclose(debug);
+#endif
 	exit(ret);
 }

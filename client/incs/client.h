@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 20:12:23 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:30:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,22 @@
 # include "../../general_incs/general.h"
 # include <signal.h>
 
+typedef struct				s_cmd_list
+{
+	char					*cmd;
+	char					*ret_server;
+	size_t					cmd_size;
+	size_t					ret_size;
+	struct s_cmd_list		*next;
+}							t_cmd_list;
+
 typedef struct				s_info_client
 {
 	int						fd;				//fd de la socker
 	char					*port;			//port d'ecoute
 	char					*ip;			//adresse ip
 	t_type_ip				type_ip;		//IPV4 ou IPV6
+	t_cmd_list				*list_cmd;		//liste chaine des cmds / ret server
 }							t_info_client;
 
 typedef enum				e_win
@@ -133,5 +143,12 @@ void						logout_server(void);
 **	send_cmds_server
 */
 int							set_list_cwd_server(void);
+
+/*
+**	cmds_list.c
+*/
+int							add_cmd_list(t_cmd_list **lst, char const *cmd,
+		char const *ret);
+int							del_cmd_list(t_cmd_list **lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 07:57:58 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 15:30:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int							send_exec_cmd(t_gen *gen)
 	if (gen == NULL || gen->cmd[0] == '\0')
 		return (gen == NULL ? -1 : 0);
 	i = 0;
-	while (g_cmds[i].cmd != NULL)// partie fonction du client
+	while (g_cmds[i].cmd != NULL)
 	{
 		if (g_cmds[i].type == STRCMP && ft_strcmp(g_cmds[i].cmd, gen->cmd) == 0)
 				return (g_cmds[i].f());
@@ -105,7 +105,7 @@ int							send_exec_cmd(t_gen *gen)
 				gen->cmd, g_cmds[i].len_cmp) == 0)
 			return (g_cmds[i].f());
 		i++;
-	}// fin partie fonction du client
+	}
 	if (send_tab(gen->i_client.fd, gen->cmd) < 0 || (info =
 			get_tab(gen->i_client.fd)) == NULL)
 		del_general(EXIT_FAILURE);
@@ -134,7 +134,8 @@ int							loop_term(t_gen *gen)
 	while (wrong_cmd >= 0)
 		if (term_size() == true)
 		{
-			if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0)
+			if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0 ||
+					add_cmd_list(&gen->i_client.list_cmd, gen->cmd, NULL) != 0)
 				del_general(EXIT_FAILURE);
 			if (send_exec_cmd(gen) != 0)
 				break ;

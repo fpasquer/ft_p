@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 12:59:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 14:59:48 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,5 @@ int							send_tab(int const sock, char *str);
 char						*get_tab(int const sock);
 int							send_tab_2d(int const sock, char **tab);
 char						**get_tab_2d(int const sock);
-// ssize_t						get_next_recv(int const sock, char **cmd);
 
 #endif
