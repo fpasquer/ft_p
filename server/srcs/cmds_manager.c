@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 08:48:14 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 18:02:55 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 08:11:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmd_manager				g_cmds[] = {
 	{"PWD", 3, STRCMP, func_pwd},
 	{"LOGIN ", 6, STRNCMP, func_login},
 	{"LOGOUT", 6, STRCMP, func_logout},
-	{"REFRESH", 7, STRCMP, func_refresh_server},// erreur sur cette commande quand elle est ecrite par le user du client
+	{"REFRESH", 7, STRCMP, func_refresh_server},
 	{NULL, 0, STRCMP, NULL}
 };
 

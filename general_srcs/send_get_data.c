@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:51:17 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 14:05:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 13:13:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int							send_tab_2d(int const sock, char **tab)
 		if (ft_strncat(buff, tab[i++], len) != buff)
 			return (-1);
 		if (tab[i] != NULL)
-			if (ft_strncat(buff, " ", len) != buff)
+			if (ft_strncat(buff, "*", len) != buff)
 				return (-1);
 	}
 	if (send(sock, &len, sizeof(len), 0) < 0)
@@ -90,47 +90,10 @@ char						**get_tab_2d(int const sock)
 {
 	char					**list;
 	char					*buff;
-	// size_t					len;
 
-	// if (sock < 0)
-	// 	return (NULL);
-	// if (recv(sock, &len, sizeof(len), 0) < 0)
-	// 	return (NULL);
-	// if ((buff = ft_memalloc(len + 1)) == NULL)
-	// 	return (NULL);
-	// if (recv(sock, buff, len, 0) < 0)
-	// 	return (NULL);
 	if ((buff = get_tab(sock)) == NULL)
 		return (NULL);
-	list = ft_strsplit(buff, ' ');
+	list = ft_strsplit(buff, '*');
 	ft_memdel((void**)&buff);
 	return (list);
 }
-
-// ssize_t						get_next_recv(int const sock, char **cmd)
-// {
-// 	char					*tmp;
-// 	char					buff[BUFF_SIZE_RECV + 1];
-// 	ssize_t					len_recv;
-// 	ssize_t					len;
-
-// 	if (sock < 0 || cmd == NULL)
-// 		return (-1);
-// 	len = 0;
-// 	*cmd = NULL;
-// 	while (1)
-// 	{
-// 		if ((len_recv = recv(sock, buff, BUFF_SIZE_RECV, 0)) < 0)
-// 			return (-1);
-// 		buff[len_recv] = '\0';
-// 		len += len_recv;
-// 		if ((tmp = ft_strjoin(*cmd, buff)) == NULL)
-// 			return (-1);
-// 		if (*cmd != NULL)
-// 			ft_memdel((void**)cmd);
-// 		*cmd = tmp;
-// 		if (len_recv < BUFF_SIZE_RECV)
-// 			break ;
-// 	}
-// 	return (len);
-// }

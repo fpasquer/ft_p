@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 19:17:59 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 12:59:29 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define SCR_ROW_MIN 51
 # define SCR_COL_MIN 203
 
-# define HIGHT_INFO_WIN 15
+# define HIGHT_INFO_WIN 20
 # define HIGHT_TERM_WIN 20
 
 # define UNSELECTED 1
