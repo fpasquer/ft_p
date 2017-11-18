@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 10:09:02 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/06/20 09:31:03 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 13:41:48 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 **		-1 si il y a un Erreur
 */
 
-int							ft_scandir(char *path, char ***list)
+int							ft_scandir(char *path, char ***list, bool const slash)
 {
 	char					*tmp;
 	int						ret;
@@ -38,7 +38,11 @@ int							ft_scandir(char *path, char ***list)
 	ret = 0;
 	while ((str_dirent = readdir(direct)) != NULL)
 	{
-		if ((tmp = ft_strdup(str_dirent->d_name)) == NULL)
+		if (slash == true && str_dirent->d_type == DT_DIR)
+			tmp = ft_strjoin(str_dirent->d_name, "/");
+		else
+			tmp = ft_strdup(str_dirent->d_name);
+		if (tmp == NULL)
 			break ;
 		ret++;
 		*list = ft_add_to_array(tmp, *list);

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 08:10:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/18 13:44:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int							set_list_cwd(t_list_cwd *cwd, char const *cwd_show,
 		return (-1);
 	ft_bzero(cwd, sizeof(*cwd));
 	if (getcwd(cwd->cwd, SIZE_CWD) == NULL || (cwd->nb_row =
-			ft_scandir(cwd->cwd, &cwd->list)) < 0)
+			ft_scandir(cwd->cwd, &cwd->list, true)) < 0)
 		return (-1);
 	if (ft_strncpy(dest, cwd_show == NULL ? cwd->cwd : cwd_show, SIZE_CWD) ==
 			NULL)
