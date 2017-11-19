@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 20:28:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:31:52 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int					error_cmd(char const *error)
 {
 	if (error == NULL)
 		return (-1);
-	if (add_infos(error) != 0|| print_infos() != 0)
+	if (add_infos(error) != 0 || print_infos() != 0)
 		return (-1);
 	return (0);
 }
@@ -216,7 +216,7 @@ int							func_pwd(void)
 		return (-1);
 	rep[1] = NULL;
 	ret = save_ret_server(gen->i_client.list_cmd, rep);
-	ft_memdel((void**)&rep);
+	ft_memdel((void**)&rep[0]);
 	return (ret);
 }
 
