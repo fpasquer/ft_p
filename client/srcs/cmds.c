@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 20:10:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:28:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,19 @@ int							func_put(void)
 
 int							func_pwd(void)
 {
-	return (0);
+	char					*rep[2];
+	int						ret;
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if ((rep[0] = ft_strdup(gen->win == SERVER ? gen->cwd_server.cwd_show :
+			gen->cwd_client.cwd_show)) == NULL)
+		return (-1);
+	rep[1] = NULL;
+	ret = save_ret_server(gen->i_client.list_cmd, rep);
+	ft_memdel((void**)&rep);
+	return (ret);
 }
 
 int							func_login(void)
