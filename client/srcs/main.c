@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 18:50:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 13:33:33 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int							main(int argc, char **argv)
 		del_general(EXIT_FAILURE);
 	if ((gen->i_client.ip = get_ip(argv[1], &gen->i_client.type_ip)) == NULL)
 		del_general(EXIT_FAILURE);
-	init_signaux();
+	if (init_signaux() != 0)
+		del_general(EXIT_FAILURE);
 	gen->scr = init_ncurses();
 	gen->win = SERVER;
 	if (set_show_windows(gen) != 0)

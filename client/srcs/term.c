@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 21:11:14 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 16:53:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # define SHIFT_DOWN (char[]){27, 91, 49, 59, 50, 66, 0, 0, 0}
 # define OPTION_UP (char[]){27, 27, 91, 65, 0, 0, 0, 0, 0}
 # define OPTION_DOWN (char[]){27, 27, 91, 66, 0, 0, 0, 0, 0}
+# define TAB (char[]){9, 0, 0, 0, 0, 0, 0, 0, 0}
 
-t_cmd_manager				g_cmds[] = {
+t_cmd_manager const			g_cmds[] = {
 	{KEY_ESC_, 2, STRCMP, func_exit},
 	{KEY_F5_, 6, STRCMP, func_refresh_client},
 	{KEY_F6_, 6, STRCMP, func_refresh_server},
@@ -32,11 +33,16 @@ t_cmd_manager				g_cmds[] = {
 	{SHIFT_DOWN, 6, STRCMP, func_shift_down},
 	{OPTION_UP, 6, STRCMP, func_option_up},
 	{OPTION_DOWN, 6, STRCMP, func_option_down},
-	{"QUIT", 4, STRCMP, func_exit},
-	{"LS", 2, STRCMP, func_ls},
+	{TAB, 2, STRCMP, autocompletion},
 	{"CD ", 3, STRNCMP, func_cd},
+	{"GET ", 4, STRNCMP, func_get},
+	{"LOGIN ", 6, STRNCMP, func_login},
+	{"LOGOUT ", 7, STRNCMP, func_logout},
+	{"LS", 2, STRCMP, func_ls},
+	{"PUT ", 4, STRNCMP, func_put},
 	{"PWD", 3, STRCMP, func_pwd},
 	{"REFRESH", 7, STRCMP, func_refresh_server},
+	{"QUIT", 4, STRCMP, func_exit},
 	{NULL, 0, STRCMP, NULL}
 };
 
@@ -58,7 +64,9 @@ static bool					print_prompt_cmd(char const cmd[SIZE_CMD],
 	wclear(gen->scr.term);
 	if ((y = print_list_cmd(gen->i_client.list_cmd, HIGHT_TERM_WIN - (LEN_PROMPT
 			+ len_cmd) / COLS + 1, 0, gen->scr.term)) < 0)
-	mvwprintw(gen->scr.term, y, 0, "%s%s", PROMPT, cmd);
+		return (false);
+	if (mvwprintw(gen->scr.term, y, 0, "%s%s", PROMPT, cmd) != OK)
+		return (false);
 	wrefresh(gen->scr.term);
 	return (true);
 }

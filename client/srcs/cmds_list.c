@@ -6,11 +6,21 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:03:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 21:19:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 17:01:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
+
+int							add_cmd_ret(t_cmd_list **node, char **ret)
+{
+	if (node == NULL || *node == NULL || ret == NULL)
+		return (-1);
+	(*node)->ret_server = *ret;
+	if (((*node)->ret_size = ft_strlen((*node)->ret_server)) == 0)
+		return (-1);
+	return (0);
+}
 
 int							add_cmd_list(t_cmd_list **lst, char const *cmd,
 		char const *ret)
@@ -73,20 +83,20 @@ int							print_list_cmd(t_cmd_list *list, int const max,
 		return (term == NULL || y < 0 || max <= 0 ? -1 : y);
 	}
 	decalage = list->cmd_size / COLS + 1;
-	decalage += (list->ret_server != NULL) ? list->ret_size / COLS : 0;
+	decalage += (list->ret_server != NULL) ? list->ret_size / COLS + 1 : 0;
 	if (y + decalage >= max - 1)
 	{
 		pos = 0;
 		return (y);
 	}
 	ret = print_list_cmd(list->next, max, y + decalage, term);
-	if (list->ret_server != NULL && print_list_line(list->ret_server,
-			list->ret_size, term, pos) != 0)
-		return (-1);
-	pos = list->ret_server != NULL ? pos - list->ret_size / COLS + 1 : pos;
 	if (print_list_line(list->cmd, list->cmd_size, term, pos) != 0)
 		return (-1);
 	pos += list->cmd_size / COLS + 1;
+	if (list->ret_server != NULL && print_list_line(list->ret_server,
+			list->ret_size, term, pos) != 0)
+		return (-1);
+	pos = list->ret_server != NULL ? pos + list->ret_size / COLS + 1 : pos;
 	return (ret);
 }
 
