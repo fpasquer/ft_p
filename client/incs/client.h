@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 16:09:50 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:06:21 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,8 @@ int							func_login(void);
 int							func_logout(void);
 int							func_refresh_client(void);
 int							func_refresh_server(void);
-int							func_shift_up(void);
-int							func_shift_down(void);
-int							func_option_up(void);
-int							func_option_down(void);
+int							func_win_up(void);
+int							func_win_down(void);
 
 /*
 **	term

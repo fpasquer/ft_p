@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 15:41:39 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:10:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ int							func_change_win(void)
 	return (0);
 }
 
-int							func_shift_up(void)
+static int					func_client_up(t_gen *gen)
 {
 	int						nb_row_scr;
-	t_gen					*gen;
 
-	if ((gen = get_general(NULL)) == NULL)
+	if (gen == NULL)
 		return (-1);
 	nb_row_scr = LINES - 2 - HIGHT_INFO_WIN - HIGHT_TERM_WIN;
 	if (gen->cwd_client.nb_row > nb_row_scr + gen->cwd_client.decalage)
@@ -81,11 +80,9 @@ int							func_shift_up(void)
 	return (0);
 }
 
-int							func_shift_down(void)
+static int					func_client_down(t_gen *gen)
 {
-	t_gen					*gen;
-
-	if ((gen = get_general(NULL)) == NULL)
+	if (gen == NULL)
 		return (-1);
 	if (gen->cwd_client.decalage > 0)
 	{
@@ -99,12 +96,11 @@ int							func_shift_down(void)
 	return (0);
 }
 
-int							func_option_up(void)
+static int					func_server_up(t_gen *gen)
 {
 	int						nb_row_scr;
-	t_gen					*gen;
 
-	if ((gen = get_general(NULL)) == NULL)
+	if (gen == NULL)
 		return (-1);
 	nb_row_scr = LINES - 2 - HIGHT_INFO_WIN - HIGHT_TERM_WIN;
 	if (gen->cwd_server.nb_row > nb_row_scr + gen->cwd_server.decalage)
@@ -119,11 +115,9 @@ int							func_option_up(void)
 	return (0);
 }
 
-int							func_option_down(void)
+static int					func_server_down(t_gen *gen)
 {
-	t_gen					*gen;
-
-	if ((gen = get_general(NULL)) == NULL)
+	if (gen == NULL)
 		return (-1);
 	if (gen->cwd_server.decalage > 0)
 	{
@@ -137,7 +131,27 @@ int							func_option_down(void)
 	return (0);
 }
 
+int							func_win_up(void)
+{
+	t_gen					*gen;
 
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (gen->win == SERVER)
+		return (func_server_up(gen));
+	return (func_client_up(gen));
+}
+
+int							func_win_down(void)
+{
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (gen->win == SERVER)
+		return (func_server_down(gen));
+	return (func_client_down(gen));
+}
 
 int							func_ls(void)
 {

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 16:53:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:06:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ t_cmd_manager const			g_cmds[] = {
 	{KEY_F5_, 6, STRCMP, func_refresh_client},
 	{KEY_F6_, 6, STRCMP, func_refresh_server},
 	{KEY_F7_, 6, STRCMP, func_change_win},
-	{SHIFT_UP, 6, STRCMP, func_shift_up},
-	{SHIFT_DOWN, 6, STRCMP, func_shift_down},
-	{OPTION_UP, 6, STRCMP, func_option_up},
-	{OPTION_DOWN, 6, STRCMP, func_option_down},
+	{SHIFT_UP, 6, STRCMP, func_win_up},
+	{SHIFT_DOWN, 6, STRCMP, func_win_down},
 	{TAB, 2, STRCMP, autocompletion},
 	{"CD ", 3, STRNCMP, func_cd},
 	{"GET ", 4, STRNCMP, func_get},

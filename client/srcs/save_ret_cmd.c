@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 15:34:21 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 16:59:09 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/19 20:02:47 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int					add_ret(char *ret, unsigned int const
 	{
 		j = 0;
 		while (j++ < rest)
-			if (ft_strcat(ret, "@") != ret)
+			if (ft_strcat(ret, "@") != ret)// remplacer par ' '
 				return (-1);
 	}
 	return (0);
@@ -55,7 +55,7 @@ static int					cpy_in_ret(t_cmd_list **node, char **list,
 		if (ft_strncat(ret, list[i++], size_ret) != ret)
 			return (-1);
 		while (current_len++ < len_bigger)
-			if (ft_strncat(ret, list[i] == NULL ? "-" : " ", size_ret) != ret)
+			if (ft_strncat(ret, list[i] == NULL ? "-" : " ", size_ret) != ret) // effacer list[i] == NULL ? "-" :
 				return (-1);
 		if (add_ret(ret, curs_nb_word_line, nb_word_line, COLS % (len_bigger +
 				1)) != 0)
