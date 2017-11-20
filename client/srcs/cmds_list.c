@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:03:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 17:01:05 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/20 08:34:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,12 @@ int							add_cmd_list(t_cmd_list **lst, char const *cmd,
 		char const *ret)
 {
 	t_cmd_list				*new;
-	size_t					len;
 
 	if (lst == NULL || cmd == NULL)
 		return (-1);
-	if ((len = ft_strlen(cmd)) == 0)
-		return (0);
 	if ((new = ft_memalloc(sizeof(*new))) == NULL)
 		return (-1);
-	new->cmd_size = len;
+	new->cmd_size = ft_strlen(cmd);
 	new->ret_size = (ret == NULL) ? 0 : ft_strlen(ret);
 	if ((new->cmd = ft_strdup(cmd)) == NULL)
 		return (-1);

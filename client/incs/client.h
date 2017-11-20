@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 20:06:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/20 10:03:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct				s_gen
 	char					last_infos[HIGHT_INFO_WIN - 2][SCR_COL_MIN - 2];
 											//Tableau pour stoker les infos
 	int						i_last_infos;	//index de last_infos
+	size_t					len_cmd;		//longueur de la commande
 	t_info_client			i_client;		//info sur le client
 	t_ncurses				scr;			//ensembles des fenetres
 	t_list_cwd				cwd_client;		//liste fichiers du client

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 20:06:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/20 10:13:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ bool						term_size(void)
 int							loop_term(t_gen *gen)
 {
 	int						wrong_cmd;
-	size_t					len_cmd;
 
 	if (gen == NULL || gen->scr.term == NULL)
 		return (-1);
@@ -143,7 +142,7 @@ int							loop_term(t_gen *gen)
 	while (wrong_cmd >= 0)
 		if (term_size() == true)
 		{
-			if (get_cmd(gen->cmd, &len_cmd, wrong_cmd) != 0 ||
+			if (get_cmd(gen->cmd, &gen->len_cmd, wrong_cmd) != 0 ||
 					add_cmd_list(&gen->i_client.list_cmd, gen->cmd, NULL) != 0)
 				del_general(EXIT_FAILURE);
 			if (send_exec_cmd(gen) != 0)
