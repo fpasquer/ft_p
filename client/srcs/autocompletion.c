@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 08:52:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/20 10:12:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/21 08:08:49 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,15 @@ static int					autocomplet_word(t_gen *gen, char const *word)
 		return (-1);
 	cmd = gen->cmd + gen->len_cmd - 1;
 	while (cmd > gen->cmd && ft_isspace(*(cmd - 1)) == false)
-	{
-		gen->len_cmd--;
 		cmd--;
-	}
 	if (ft_strncpy(cmd, word, SIZE_CMD - (int)(cmd - gen->cmd)) != cmd)
 		return (-1);
 	gen->len_cmd = ft_strlen(gen->cmd);
 	return (0);
 }
 
-static int					autocompletion_bin(t_gen *gen, char const *cmd)
+static int					autocompletion_exe(t_gen *gen, char const
+		**list_rep, char const *cmd)
 {
 	char					**list;
 	int						ret;
@@ -58,19 +56,19 @@ static int					autocompletion_bin(t_gen *gen, char const *cmd)
 	unsigned int			i;
 	size_t					len_needed;
 
-	if (gen == NULL)
+	if (list_rep == NULL || (*list_rep) == NULL || cmd == NULL || gen == NULL)
 		return (-1);
-	if ((nb_match = nb_match_in_list((char**)g_list_cmd, cmd)) <= 0)
+	if ((nb_match = nb_match_in_list((char**)list_rep, cmd)) <= 0)
 		return (nb_match);
 	list = NULL;
 	i = 0;
 	len_needed = ft_strlen(cmd);
-	while (g_list_cmd[i] != NULL)
-		if (ft_strncmp(g_list_cmd[i++], cmd, len_needed) == 0)
+	while (list_rep[i] != NULL)
+		if (cmd == '\0' || ft_strncmp(list_rep[i++], cmd, len_needed) == 0)
 		{
 			if (nb_match == 1)
-				return (autocomplet_word(gen, g_list_cmd[i - 1]));
-			if ((list = ft_add_to_array((char *)g_list_cmd[i - 1], list)) ==
+				return (autocomplet_word(gen, list_rep[i - 1]));
+			if ((list = ft_add_to_array((char *)list_rep[i - 1], list)) ==
 					NULL)
 				break ;
 		}
@@ -79,18 +77,75 @@ static int					autocompletion_bin(t_gen *gen, char const *cmd)
 	return (ret);
 }
 
+// static int					autocompletion_bin(t_gen *gen, char const *cmd)
+// {
+// 	char					**list;
+// 	int						ret;
+// 	int						nb_match;
+// 	unsigned int			i;
+// 	size_t					len_needed;
+
+// 	if (gen == NULL)
+// 		return (-1);
+// 	if ((nb_match = nb_match_in_list((char**)g_list_cmd, cmd)) <= 0)
+// 		return (nb_match);
+// 	list = NULL;
+// 	i = 0;
+// 	len_needed = ft_strlen(cmd);
+// 	while (g_list_cmd[i] != NULL)
+// 		if (ft_strncmp(g_list_cmd[i++], cmd, len_needed) == 0)
+// 		{
+// 			if (nb_match == 1)
+// 				return (autocomplet_word(gen, g_list_cmd[i - 1]));
+// 			if ((list = ft_add_to_array((char *)g_list_cmd[i - 1], list)) ==
+// 					NULL)
+// 				break ;
+// 		}
+// 	ret = save_ret_server(gen->i_client.list_cmd, list);
+// 	ft_free_add_to_array(list);
+// 	return (ret);
+// }
+
+// static int					autocompletion_content(t_gen *gen, char const *cmd)
+// {
+// 	if (gen == NULL)
+// 		return (-1);
+// }
+
+static int					check_autocompletion_bin(char const *cmd)
+{
+	unsigned int			i;
+
+	if (cmd == NULL)
+		return  (-1);
+	i = 0;
+	while (ft_isspace(cmd[i]))
+		i++;
+	while (ft_isalnum(cmd[i]))
+		i++;
+	return (cmd[i] == '\0' ? true : false);
+}
+
 int							autocompletion(void)
 {
 	char					*cmd;
+	int						ret;
 	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) == NULL || add_cmd_list(
 			&gen->i_client.list_cmd, gen->cmd, NULL) != 0)
 		return (-1);
-	if (gen->len_cmd == 0)
-		return (save_ret_server(gen->i_client.list_cmd, (char**)g_list_cmd));
+	// if (gen->len_cmd == 0)
+	// 	return (save_ret_server(gen->i_client.list_cmd, (char**)g_list_cmd));
 	cmd = gen->cmd + gen->len_cmd - 1;
 	while (cmd > gen->cmd && ft_isspace(*(cmd - 1)) == false)
 		cmd--;
-	return (autocompletion_bin(gen, cmd));
+	if ((ret = check_autocompletion_bin(gen->cmd)) < 0)
+		return (-1);
+	if (ret == true)
+		return (autocompletion_exe(gen, (char const **)g_list_cmd, cmd));
+	if (gen->win == SERVER)
+		return (autocompletion_exe(gen, (char const **)gen->cwd_server.list, cmd));
+	return (autocompletion_exe(gen, (char const **)gen->cwd_client.list, cmd));
+	// return (ret == true ? autocompletion_bin(gen, cmd) : 0); //ajouter la fonction du contenu du dossier
 }
