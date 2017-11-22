@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/28 17:49:55 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/14 17:59:12 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/11/22 14:55:50 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/11/22 15:21:07 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
 
-void						need_param(char const *name_bin)
+static void					error_msg(char const *error)
 {
-	if (name_bin != NULL)
-		ft_putstr_fd(name_bin, STDERR_FILENO);
-	ft_putstr_fd(" need port \n", STDERR_FILENO);
+	if (error != NULL)
+		ft_putstr_fd(error, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
@@ -24,17 +23,13 @@ int							main(int argc, char **argv)
 {
 	t_gen					*gen;
 
-
-#ifdef DEBUG
-	debug = fopen("debug.txt", "w+");
-#endif
-	if (argc <= 1)
-		need_param(argv[0]);
-	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL || check_port(
-			(gen->port = argv[1])) == false)
-		del_general(EXIT_FAILURE);
-	if (init_signaux() != 0 || init_server(gen) != 0)
-		del_general(EXIT_FAILURE);
-	loop_server();
-	return (EXIT_SUCCESS);
+	if (argc <= 1 || check_port(argv[1]) == false)
+		error_msg("Need port or port unvalable(1500 <-> 65535)\n");
+	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL)
+		error_msg("Error gen main\n");
+	if (init_signaux() != 0)
+		error_msg("Signaux error\n");
+	while (1)
+		;
+	return (EXIT_FAILURE);
 }

@@ -6,14 +6,13 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/21 14:16:13 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/22 15:18:14 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= server
 
-SRC_NAME		= main.c signaux.c general.c server.c send_cwd_client.c cmds.c	\
-				  cmds_manager.c
+SRC_NAME		= main.c init_signaux.c general.c
 SRC_NAME_GEN	= check_ip_port.c cwd_manager.c send_get_data.c
 
 INCLUDES		= server.h

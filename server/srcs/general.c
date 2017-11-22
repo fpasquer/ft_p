@@ -5,41 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 10:19:45 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/17 08:55:28 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/11/22 15:15:49 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/11/22 15:23:54 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
 
-t_gen						*get_general(t_gen *ptr)
+t_gen						*get_general(t_gen *gen)
 {
-	static t_gen			*gen = NULL;
+	static t_gen			*tmp = NULL;
 
-	if (ptr != NULL)
-		gen = ptr;
-	return (gen);
+	if (gen != NULL)
+		tmp = gen;
+	return (tmp);
 }
 
-void						del_general(int const ret)
+int							del_general(void)
 {
 	t_gen					*gen;
-
-#ifdef DEBUG
-	fclose(debug);
-#endif
-	if ((gen = get_general(NULL)) != NULL)
-	{
-		if (gen->ptr != NULL)
-			freeaddrinfo(gen->ptr);
-		if (gen->sock_client >= 0)
-			close(gen->sock_client);
-		if (gen->sock_server >= 0)
-			close(gen->sock_server);
-		if (gen->cmd != NULL)
-			ft_memdel((void**)&gen->cmd);
-		del_list_cwd(gen->cwd_server);
-		printf("\nServer closed\n");
-	}
-	exit(ret);
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	ft_memdel((void**)&gen);
+	printf("\nServer closed\n");
+	exit(EXIT_SUCCESS);
+	return (0);
 }
