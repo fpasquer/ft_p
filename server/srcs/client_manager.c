@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:54:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 16:49:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:09:58 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_client				*init_client(int const sock_client,
 		return (NULL);
 	if (ft_strncpy(client->current_dir, "/", SIZE_CWD) != client->current_dir)
 		return (NULL);
-	return (client);
+	return (get_client(client));
 }
 
 t_client					*get_client(t_client *client)
@@ -46,6 +46,7 @@ void						del_client(int const ret)
 	{
 		if (client->cmd != NULL)
 			ft_memdel((void**)&client->cmd);
+		printf("End client %d\n", client->sock_client);
 	}
 	exit(ret);
 }

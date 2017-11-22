@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:27:03 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 16:48:39 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:07:48 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,6 @@ int							init_server(char const *port)
 	return (-1);
 }
 
-static void					func_server(int sock_client)
-{
-	if (wait(NULL) == -1 || sock_client < 0)
-		del_general(EXIT_FAILURE);
-	printf("end client %d\n", sock_client);
-	close(sock_client);
-}
-
 void						loop_server(t_gen *gen)
 {
 	int						sock_client;
@@ -92,9 +84,7 @@ void						loop_server(t_gen *gen)
 			return ;
 		if ((pid = fork()) == -1)
 			return ;
-		else if (pid > 0)
-			func_server(sock_client);
-		else
+		else if (pid == 0)
 			new_client(sock_client, gen->sock_server);
 	}
 }
