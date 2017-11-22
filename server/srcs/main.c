@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 14:55:50 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 15:21:07 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 16:26:38 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int							main(int argc, char **argv)
 		error_msg("Error gen main\n");
 	if (init_signaux() != 0)
 		error_msg("Signaux error\n");
-	while (1)
-		;
+	if (init_server(argv[1]) != 0)
+		error_msg("Init server error\n");
+	loop_server(gen);
 	return (EXIT_FAILURE);
 }

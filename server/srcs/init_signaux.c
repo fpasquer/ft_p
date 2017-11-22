@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:05:09 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 15:24:02 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 16:26:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static void					func_ctrl_c(int sig)
 	t_gen					*gen;
 
 	if ((gen = get_general(NULL)) != NULL)
-		del_general();
+		del_general(EXIT_SUCCESS);
 	exit(sig);
 }
 
 int							init_signaux(void)
 {
 	unsigned int			i;
-	static t_sig_func const	signaux[] = {{SIGINT, func_ctrl_c}};
+	static t_sig_func const	signaux[] = {{SIGINT, func_ctrl_c}, {0, NULL}};
 
 	i = 0;
 	while (signaux[i].f != NULL)
