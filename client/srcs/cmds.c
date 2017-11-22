@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 20:31:52 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:21:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,30 @@ static int					cmd_for_server(t_gen *gen)
 	return (0);
 }
 
+/*
+int							func_refresh_server(void)
+{
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (send_tab(gen->i_client.fd, "REFRESH") < 0)
+		return (-1);
+	del_list_cwd(gen->cwd_server);
+	if (set_list_cwd_server() != 0 || print_list_cwd(gen->cwd_server,
+			gen->scr.server, gen->win == SERVER ? true : false) != 0)
+		return (-1);
+	return (0);
+}*/
+
 int							func_exit(void)
 {
+	t_gen					*gen;
+
+	if ((gen = get_general(NULL)) == NULL)
+		return (-1);
+	if (send_tab(gen->i_client.fd, "LOGOUT") < 0)
+		return (-1);
 	del_general(EXIT_SUCCESS);
 	return (0);
 }

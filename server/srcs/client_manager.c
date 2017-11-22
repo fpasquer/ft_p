@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:54:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 19:09:58 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:24:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void						del_client(int const ret)
 		if (client->cmd != NULL)
 			ft_memdel((void**)&client->cmd);
 		printf("End client %d\n", client->sock_client);
+		if (client->sock_client > 0)
+			close(client->sock_client);
 	}
 	exit(ret);
 }

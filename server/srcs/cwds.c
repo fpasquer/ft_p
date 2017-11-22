@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:16:38 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 16:51:45 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:23:15 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,7 @@ int							func_login(void)
 
 int							func_logout(void)
 {
-	t_client				*gen;
-
-	if ((gen =  get_client(NULL)) == NULL || gen->sock_client <= 0)
-		return (-1);
-	if (send_tab(gen->sock_client, "LOGOUT success") < 0)
-		return (-1);
-	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
-	ft_memdel((void**)&gen->cmd);
+	del_client(EXIT_SUCCESS);
 	return (0);
 }
 
