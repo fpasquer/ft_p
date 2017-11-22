@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/20 10:03:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/22 11:22:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct				s_gen
 	char					cmd[SIZE_CMD];	//commandes tapee dans le shell
 	char					last_infos[HIGHT_INFO_WIN - 2][SCR_COL_MIN - 2];
 											//Tableau pour stoker les infos
+	char					ip[INET6_ADDRSTRLEN];
+											//ip en format string
 	int						i_last_infos;	//index de last_infos
 	size_t					len_cmd;		//longueur de la commande
 	t_info_client			i_client;		//info sur le client
