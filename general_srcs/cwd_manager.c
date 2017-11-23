@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 11:44:22 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 14:48:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 19:31:47 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,33 @@ int							set_list_cwd(t_list_cwd *cwd, char const *cwd_show,
 	if (ft_strncpy(dest, cwd_show == NULL ? cwd->cwd : cwd_show, SIZE_CWD) ==
 			NULL)
 		return (-1);
+	return (0);
+}
+
+int							is_in_list(t_list_cwd const cwd, char const *target)
+{
+	char					tmp[SIZE_CWD];
+	int						ret;
+	unsigned int			i;
+
+	if (cwd.list == NULL || target == NULL)
+		return (-1);
+	ret = target[ft_strlen(target) - 1] == '/' ? TYPE_FOLDER : TYPE_FILE;
+	i = 0;
+	while (cwd.list[i] != NULL)
+	{
+		if (ret == TYPE_FILE)
+		{
+			if (ft_strncpy(tmp, target, SIZE_CWD) != tmp || ft_strncat(tmp, "/",
+					SIZE_CWD) != tmp)
+				return (-1);
+			if (ft_strcmp(cwd.list[i], tmp) == 0)
+				return (TYPE_FOLDER);
+		}
+		if (ft_strcmp(cwd.list[i], target) == 0)
+			return (ret);
+		i++;
+	}
 	return (0);
 }
 

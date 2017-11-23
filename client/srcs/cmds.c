@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 13:50:34 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 19:18:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,11 +197,6 @@ int							func_cd(void)
 	ret = chdir(path_full);
 	ft_memdel((void**)&path_full);
 	return (ret == -1 ? error_cmd("CD path unvalable") : func_refresh_client());
-}
-
-int							func_get(void)
-{
-	return (0);
 }
 
 int							func_put(void)

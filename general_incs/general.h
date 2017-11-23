@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/19 19:21:47 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 20:19:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <netdb.h>
 # include <errno.h>
 # include <arpa/inet.h>
+# include <sys/mman.h>
 
 # define SIZE_CWD 500
 
@@ -36,6 +37,9 @@
 # define SELECTED 2
 
 # define DEBUG
+
+# define TYPE_FOLDER 1
+# define TYPE_FILE 2
 
 # ifdef DEBUG
 	FILE					*debug;
@@ -98,6 +102,8 @@ int							set_list_cwd(t_list_cwd *cwd, char const *cwd_show,
 	char dest[SIZE_CWD]);
 int							print_list_cwd(t_list_cwd const cwd, WINDOW *win,
 		bool const selected);
+int							is_in_list(t_list_cwd const cwd,
+		char const *target);
 void						del_list_cwd(t_list_cwd cwd);
 
 /*

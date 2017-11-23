@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:16:38 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 14:54:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 19:50:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,6 @@ int							func_cd(void)
 			SIZE_CWD) != gen->current_dir || send_tab(gen->sock_client,
 			"CD success") < 0)
 		return (-1);
-	return (0);
-}
-
-int							func_get(void)
-{
-	t_client				*gen;
-
-	if ((gen =  get_client(NULL)) == NULL || gen->sock_client <= 0)
-		return (-1);
-	if (send_tab(gen->sock_client, "GET success") < 0)
-		return (-1);
-	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
-	ft_memdel((void**)&gen->cmd);
 	return (0);
 }
 
