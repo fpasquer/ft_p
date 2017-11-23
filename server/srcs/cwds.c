@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:16:38 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 19:23:15 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 14:35:46 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ int							func_ls(void)
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	ft_memdel((void**)&gen->cmd);
 	return (0);
+}
+
+static int					check_cd(char const *racine, char *current_dir,
+		size_t const size_current_dir)
+{
+	char					buff[SIZE_CWD];
+
+	if (racine == NULL || getcwd(buff, SIZE_CWD) != buff)
+		return (-1);
+	if (strstr(buff, racine) != NULL)
+		return (true);
+	if (chdir(racine) != 0 || ft_strncpy(current_dir, "/", size_current_dir)
+			!= current_dir)
+		return (-1);
+	return (false);
 }
 
 int							func_cd(void)
@@ -43,7 +58,7 @@ int							func_cd(void)
 	i = chdir(path);
 	ft_memdel((void**)&path);
 	ft_memdel((void**)&gen->cmd);
-	if (i != 0)
+	if (i != 0 || check_cd(gen->racine, gen->current_dir, SIZE_CWD) != true)
 		return (send_tab(gen->sock_client, "CD FAILURE"));
 	if (getcwd(gen->current_dir, SIZE_CWD) != gen->current_dir || ft_memmove(
 			gen->current_dir, &gen->current_dir[ft_strlen(gen->racine)],
