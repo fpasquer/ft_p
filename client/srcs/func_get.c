@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:16:56 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 21:52:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 22:07:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,15 @@ static int					cmd_for_server(int const fd, char *cmd)
 
 static int					func_get_file(t_gen *gen)
 {
-	//char					*name = NULL;
-	char					file_content[31];
-	// int						fd;
-	// size_t					len_name;
-	// size_t					size_file;
+	void					*datas;
+	size_t					size_data;
  
-	if (gen == NULL || recv(gen->i_client.fd, &file_content, 31, 0)
-			< 0)
-	{
+	if (gen == NULL || recv(gen->i_client.fd, &size_data, sizeof(size_data), 0)
+			< 0 || (datas = ft_memalloc(size_data)) == NULL || recv(
+			gen->i_client.fd, datas, size_data, 0) < 0)
 		return (-1);
-	}
-	print_memory(file_content, 31);
+	print_memory(datas, size_data);
+	ft_memdel((void**)&datas);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:50:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 21:48:20 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/23 22:16:47 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static int					send_file(t_client *gen , t_data_file *file)
 			&file->datas[sizeof(file->len_name) + file->len_name])
 		return(-1);
 	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name +
-			sizeof(file->size_file)], file->file_content,
-			sizeof(file->size_file)) != &file->datas[sizeof(file->len_name) +
-			file->len_name + sizeof(file->size_file)])
+			sizeof(file->size_file)], file->file_content, file->size_file) !=
+			&file->datas[sizeof(file->len_name) + file->len_name +
+			sizeof(file->size_file)])
 		return(-1);
 	return (0);
 }
@@ -61,7 +61,6 @@ static int					send_file_to_client(t_client *gen, t_data_file *file)
 	if ((full_path = ft_multijoin(3, gen->racine, gen->current_dir, file->name))
 			== NULL)
 		return (send_tab(gen->sock_client, "Error malloc"));
-
 	if ((file->fd = ft_fopen(full_path, "r")) <= 0)
 		return (send_tab(gen->sock_client, "Error open"));
 	if ((file->size_file = lseek(file->fd, 0, SEEK_END)) <= 0)
@@ -72,7 +71,8 @@ static int					send_file_to_client(t_client *gen, t_data_file *file)
 	if (send_file(gen, file) != 0 || send_tab(gen->sock_client, "GET success")
 			!= 0)
 		return (send_tab(gen->sock_client, "Error send file"));
-	if (send(gen->sock_client, file->datas, file->size_datas, 0) < 0)
+	if (send(gen->sock_client, &file->size_datas, sizeof(file->size_datas), 0)
+			< 0 || send(gen->sock_client, file->datas, file->size_datas, 0) < 0)
 		return (-1);
 	ft_memdel((void**)&file->datas);
 	munmap(file->file_content, file->size_file);
