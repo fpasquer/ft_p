@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 08:03:11 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:28:59 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 10:49:20 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,31 @@ int							creat_file(void *datas, int (f)(void))
 	}
 	ft_memdel((void**)&name);
 	close(fd);
-	return (f());
+	return (f == NULL ? 0 : f());
+}
+
+int							get_datas_file(t_data_file *file)
+{
+	if (file == NULL)
+		return (-1);
+	file->size_datas = sizeof(file->len_name) + sizeof(file->size_file) +
+			file->len_name + file->size_file;
+	if ((file->datas = ft_memalloc(file->size_datas)) == NULL)
+		return (-1);
+	if (ft_memcpy(file->datas, &file->len_name, sizeof(file->len_name)) !=
+			file->datas)
+		return (-1);
+	if (ft_memcpy(&file->datas[sizeof(file->len_name)], file->name,
+			file->len_name) != &file->datas[sizeof(file->len_name)])
+		return (-1);
+	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name],
+			&file->size_file, sizeof(file->size_file)) !=
+			&file->datas[sizeof(file->len_name) + file->len_name])
+		return (-1);
+	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name +
+			sizeof(file->size_file)], file->file_content, file->size_file) !=
+			&file->datas[sizeof(file->len_name) + file->len_name +
+			sizeof(file->size_file)])
+		return (-1);
+	return (0);
 }

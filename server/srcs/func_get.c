@@ -6,37 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:50:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:20:33 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 09:34:52 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/server.h"
-
-static int					send_file(t_client *gen, t_data_file *file)
-{
-	if (gen == NULL || file == NULL)
-		return (-1);
-	file->size_datas = sizeof(file->len_name) + sizeof(file->size_file) +
-			file->len_name + file->size_file;
-	if ((file->datas = ft_memalloc(file->size_datas)) == NULL)
-		return (-1);
-	if (ft_memcpy(file->datas, &file->len_name, sizeof(file->len_name)) !=
-			file->datas)
-		return (-1);
-	if (ft_memcpy(&file->datas[sizeof(file->len_name)], file->name,
-			file->len_name) != &file->datas[sizeof(file->len_name)])
-		return (-1);
-	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name],
-			&file->size_file, sizeof(file->size_file)) !=
-			&file->datas[sizeof(file->len_name) + file->len_name])
-		return (-1);
-	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name +
-			sizeof(file->size_file)], file->file_content, file->size_file) !=
-			&file->datas[sizeof(file->len_name) + file->len_name +
-			sizeof(file->size_file)])
-		return (-1);
-	return (0);
-}
 
 static int					send_file_to_client(t_client *gen,
 		t_data_file *file)
@@ -55,7 +29,7 @@ static int					send_file_to_client(t_client *gen,
 	if ((file->file_content = mmap(NULL, file->size_file, PROT_READ,
 			MAP_PRIVATE, file->fd, 0)) == MAP_FAILED)
 		return (send_tab(gen->sock_client, "Error mmap"));
-	if (send_file(gen, file) != 0 || send_tab(gen->sock_client, "GET success")
+	if (get_datas_file(file) != 0 || send_tab(gen->sock_client, "GET success")
 			!= 0)
 		return (send_tab(gen->sock_client, "Error send file"));
 	if (send(gen->sock_client, &file->size_datas, sizeof(file->size_datas), 0)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:06:18 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:01:34 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@
 # ifdef DEBUG
 	FILE					*debug;
 # endif
+
+typedef struct				s_data_file
+{
+	char					*datas;			//ligne complete envoye au client
+	char					*name;			//name du fichier
+	char					*file_content;	//contenue du fihier
+	int						fd;				//de open
+	size_t					len_name;		//longueur de name
+	size_t					size_file;		//size_du fichier
+	size_t					size_datas;		//size_datas
+}							t_data_file;
 
 typedef struct				s_sig_func
 {
@@ -127,5 +138,6 @@ char						**get_tab_2d(int const sock);
 **	send_get_file
 */
 int							creat_file(void *datas, int (f)(void));
+int							get_datas_file(t_data_file *file);
 
 #endif

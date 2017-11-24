@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:25:37 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 09:29:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@
 # include <pthread.h>
 
 # define MAX_LEN_PORT 6
-
-typedef struct				s_data_file
-{
-	char					*datas;			//ligne complete envoye au client
-	char					*name;			//name du fichier
-	char					*file_content;	//contenue du fihier
-	int						fd;				//de open
-	size_t					len_name;		//longueur de name
-	size_t					size_file;		//size_du fichier
-	size_t					size_datas;		//size_datas
-}							t_data_file;
 
 typedef struct				s_gen
 {

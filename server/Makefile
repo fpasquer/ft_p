@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/24 08:27:23 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/24 10:10:40 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= server
 
 SRC_NAME		= main.c init_signaux.c general.c server.c client_manager.c		\
 				  cwd_manager.c cwds.c send_cwd_client.c func_get.c func_cd.c
-SRC_NAME_GEN	= check_ip_port.c cwd_manager.c send_get_data.c
+SRC_NAME_GEN	= check_ip_port.c cwd_manager.c send_get_data.c send_get_file.c
 
 INCLUDES		= server.h
 
