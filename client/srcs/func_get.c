@@ -6,26 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:16:56 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 07:55:20 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:07:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
-
-void						print_memory(void *addr, size_t len)
-{
-	unsigned char			*tmp;
-	size_t					i;
-
-	i = 0;
-	tmp = (unsigned char *)addr;
-	while (i < len)
-	{
-		fprintf(debug, "%p = %c = %d\n", tmp + i, ft_isprint((int)tmp[i]) == true ? tmp[i] : '.', tmp[i]);
-		i++;
-	}
-	fprintf(debug, "\n\n");
-}
 
 static int					cmd_for_server(int const fd, char *cmd)
 {
@@ -43,36 +28,6 @@ static int					cmd_for_server(int const fd, char *cmd)
 	return (ret == 0 ? 0 : 1);
 }
 
-static int					creat_file(t_gen *gen, void *datas)
-{
-	char					*name;
-	char					*file_content;
-	int						fd;
-	size_t					len_name;
-	size_t					size_file;
-
-	if (gen == NULL || datas == NULL)
-		return (-1);
-	len_name = (*(size_t*)datas);
-	datas += sizeof(len_name);
-	if ((name = ft_strndup(datas, len_name)) == NULL)
-		return (-1);
-	datas += len_name;
-	size_file = (*(size_t *)datas);
-	datas += sizeof(size_file);
-	file_content = (char *)datas;
-	if ((fd = ft_fopen(name, "w+")) <= 0 || write(fd, file_content, size_file)
-			!= (ssize_t)size_file)
-	{
-		if (add_infos("Creat file or write error") != 0 || print_infos() != 0)
-			return (-1);
-		return (0);
-	}
-	ft_memdel((void**)&name);
-	close(fd);
-	return (func_refresh_client());
-}
-
 static int					func_get_file(t_gen *gen)
 {
 	void					*datas;
@@ -83,7 +38,10 @@ static int					func_get_file(t_gen *gen)
 			< 0 || (datas = ft_memalloc(size_data)) == NULL || recv(
 			gen->i_client.fd, datas, size_data, 0) < 0)
 		return (-1);
-	ret = creat_file(gen ,datas);
+	ret = creat_file(datas, func_refresh_client);
+	if (ret != 0)
+		if (add_infos("Creat file or write error") != 0 || print_infos() != 0)
+			return (-1);
 	ft_memdel((void**)&datas);
 	return (ret);
 }

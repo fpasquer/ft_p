@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 21:59:55 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:06:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,10 @@ int							send_tab(int const sock, char *str);
 char						*get_tab(int const sock);
 int							send_tab_2d(int const sock, char **tab);
 char						**get_tab_2d(int const sock);
+
+/*
+**	send_get_file
+*/
+int							creat_file(void *datas, int (f)(void));
 
 #endif
