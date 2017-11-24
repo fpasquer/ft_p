@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:50:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 22:16:47 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 07:41:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ static int					send_file(t_client *gen , t_data_file *file)
 	if (ft_memcpy(file->datas, &file->len_name, sizeof(file->len_name)) !=
 			file->datas)
 		return(-1);
+	
 	if (ft_memcpy(&file->datas[sizeof(file->len_name)], file->name,
 			file->len_name) != &file->datas[sizeof(file->len_name)])
 		return(-1);
+	print_memory(&file->datas[sizeof(file->len_name)], file->len_name);
 	if (ft_memcpy(&file->datas[sizeof(file->len_name) + file->len_name],
 			&file->size_file, sizeof(file->size_file)) !=
 			&file->datas[sizeof(file->len_name) + file->len_name])
