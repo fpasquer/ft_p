@@ -6,15 +6,16 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/24 08:07:48 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/24 09:03:31 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= client
 
 SRC_NAME		= main.c term.c cmds.c general.c init_ncurses.c signaux.c		\
-				  infos.c socket.c send_cmds_server.c cmds_list.c				\
-				  autocompletion.c save_ret_cmd.c func_get.c
+				  infos.c socket.c send_cmds_server.c cmds_list.c func_put.c	\
+				  autocompletion.c save_ret_cmd.c func_get.c func_cd.c			\
+				  func_refresh.c func_win_up.c func_win_down.c
 SRC_NAME_GEN	= keybord.c cwd_manager.c check_ip_port.c send_get_data.c		\
 				  send_get_file.c
 
