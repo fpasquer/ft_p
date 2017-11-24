@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:08:30 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 16:49:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:25:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_cmd_manager				g_cmds[] = {
 	{"GET ", 4, STRNCMP, func_get},
 	{"PUT ", 4, STRNCMP, func_put},
 	{"PWD", 3, STRCMP, func_pwd},
-	{"LOGIN ", 6, STRNCMP, func_login},
 	{"LOGOUT", 6, STRCMP, func_logout},
 	{"REFRESH", 7, STRCMP, func_refresh_server},
 	{NULL, 0, STRCMP, NULL}
@@ -39,8 +38,10 @@ int							cmds_manager(t_client *gen)
 				return (g_cmds[i].f());
 		}
 		else
+		{
 			if (ft_strncmp(g_cmds[i].cmd, gen->cmd, g_cmds[i].len_cmp) == 0)
 				return (g_cmds[i].f());
+		}
 		i++;
 	}
 	if (gen->cmd[0] != '\0')

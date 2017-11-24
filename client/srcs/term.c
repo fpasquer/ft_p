@@ -6,23 +6,23 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/20 10:13:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:34:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
 
-# define KEY_ENTER_ (char[]){13, 0, 0, 0, 0, 0, 0}
-# define KEY_DEL_ (char[]){127, 0, 0, 0, 0, 0, 0}
-# define KEY_F5_ (char[]){27, 91, 49, 53, 126, 0, 0}
-# define KEY_ESC_ (char[]){27, 0, 0, 0, 0, 0, 0}
-# define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
-# define KEY_F7_ (char[]){27, 91, 49, 56, 126, 0, 0, 0, 0}
-# define SHIFT_UP (char[]){27, 91, 49, 59, 50, 65, 0, 0, 0}
-# define SHIFT_DOWN (char[]){27, 91, 49, 59, 50, 66, 0, 0, 0}
-# define OPTION_UP (char[]){27, 27, 91, 65, 0, 0, 0, 0, 0}
-# define OPTION_DOWN (char[]){27, 27, 91, 66, 0, 0, 0, 0, 0}
-# define TAB (char[]){9, 0, 0, 0, 0, 0, 0, 0, 0}
+#define KEY_ENTER_ (char[]){13, 0, 0, 0, 0, 0, 0}
+#define KEY_DEL_ (char[]){127, 0, 0, 0, 0, 0, 0}
+#define KEY_F5_ (char[]){27, 91, 49, 53, 126, 0, 0}
+#define KEY_ESC_ (char[]){27, 0, 0, 0, 0, 0, 0}
+#define KEY_F6_ (char[]){27, 91, 49, 55, 126, 0, 0, 0, 0}
+#define KEY_F7_ (char[]){27, 91, 49, 56, 126, 0, 0, 0, 0}
+#define SHIFT_UP (char[]){27, 91, 49, 59, 50, 65, 0, 0, 0}
+#define SHIFT_DOWN (char[]){27, 91, 49, 59, 50, 66, 0, 0, 0}
+#define OPTION_UP (char[]){27, 27, 91, 65, 0, 0, 0, 0, 0}
+#define OPTION_DOWN (char[]){27, 27, 91, 66, 0, 0, 0, 0, 0}
+#define TAB (char[]){9, 0, 0, 0, 0, 0, 0, 0, 0}
 
 t_cmd_manager const			g_cmds[] = {
 	{KEY_ESC_, 2, STRCMP, func_exit},
@@ -34,8 +34,6 @@ t_cmd_manager const			g_cmds[] = {
 	{TAB, 2, STRCMP, autocompletion},
 	{"CD ", 3, STRNCMP, func_cd},
 	{"GET ", 4, STRNCMP, func_get},
-	{"LOGIN ", 6, STRNCMP, func_login},
-	{"LOGOUT ", 7, STRNCMP, func_logout},
 	{"LS", 2, STRCMP, func_ls},
 	{"PUT ", 4, STRNCMP, func_put},
 	{"PWD", 3, STRCMP, func_pwd},
@@ -109,7 +107,7 @@ int							send_exec_cmd(t_gen *gen)
 	while (g_cmds[i].cmd != NULL)
 	{
 		if (g_cmds[i].type == STRCMP && ft_strcmp(g_cmds[i].cmd, gen->cmd) == 0)
-				return (g_cmds[i].f());
+			return (g_cmds[i].f());
 		else if (g_cmds[i].type == STRNCMP && ft_strncmp(g_cmds[i].cmd,
 				gen->cmd, g_cmds[i].len_cmp) == 0)
 			return (g_cmds[i].f());

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 19:16:56 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:07:24 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:50:07 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int					func_get_file(t_gen *gen)
 	void					*datas;
 	int						ret;
 	size_t					size_data;
- 
+
 	if (gen == NULL || recv(gen->i_client.fd, &size_data, sizeof(size_data), 0)
 			< 0 || (datas = ft_memalloc(size_data)) == NULL || recv(
 			gen->i_client.fd, datas, size_data, 0) < 0)

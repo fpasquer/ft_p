@@ -6,12 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/15 10:32:26 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:45:10 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
-
 
 static WINDOW				*setup_win(int const height, int const width,
 		int const begin_y, int const begin_x)
@@ -37,8 +36,8 @@ static int					init_windows(t_ncurses *scr)
 	if ((scr->server = setup_win(LINES - HIGHT_INFO_WIN - HIGHT_TERM_WIN,
 			COLS / 2, HIGHT_INFO_WIN, COLS / 2)) == NULL)
 		return (-1);
-	if ((scr->term = setup_win(HIGHT_TERM_WIN, COLS, LINES - HIGHT_TERM_WIN, 0)
-			) == NULL)
+	if ((scr->term = setup_win(HIGHT_TERM_WIN, COLS, LINES - HIGHT_TERM_WIN,
+			0)) == NULL)
 		return (-1);
 	return (0);
 }
@@ -58,7 +57,7 @@ t_ncurses					init_ncurses(void)
 	int						i;
 	t_ncurses				scr;
 	t_color_ncurses const	colors[] = {{1, COLOR_GREEN, COLOR_BLACK},
-		{2, COLOR_RED, COLOR_BLACK},{0, 0, 0}};
+		{2, COLOR_RED, COLOR_BLACK}, {0, 0, 0}};
 
 	initscr();
 	i = -1;

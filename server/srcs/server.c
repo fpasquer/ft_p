@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:27:03 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 21:13:42 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:14:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int							init_server(char const *port)
 {
 	int						ret;
 	struct addrinfo			*curs;
-	t_gen 					*gen;
+	t_gen					*gen;
 
-	if ((gen =get_general(NULL)) == NULL)
+	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
 	if (ft_strncpy(gen->port, port, MAX_LEN_PORT) != gen->port)
 		return (-1);
@@ -70,8 +70,8 @@ int							init_server(char const *port)
 void						loop_server(t_gen *gen)
 {
 	int						sock_client;
-	socklen_t				clientAddressLength;
-	struct sockaddr_storage	clientAddress;
+	socklen_t				client_address_length;
+	struct sockaddr_storage	client_address;
 	pid_t					pid;
 
 	if (gen == NULL)
@@ -80,7 +80,7 @@ void						loop_server(t_gen *gen)
 	while (1)
 	{
 		if ((sock_client = accept(gen->sock_server, (struct sockaddr *)
-				&clientAddress, &clientAddressLength)) == -1)
+				&client_address, &client_address_length)) == -1)
 			return ;
 		if ((pid = fork()) == -1)
 			return ;

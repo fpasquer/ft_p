@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 09:05:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/23 19:18:05 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:36:34 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,16 +219,6 @@ int							func_pwd(void)
 	ret = save_ret_server(gen->i_client.list_cmd, rep);
 	ft_memdel((void**)&rep[0]);
 	return (ret);
-}
-
-int							func_login(void)
-{
-	return (0);
-}
-
-int							func_logout(void)
-{
-	return (0);
 }
 
 int							func_refresh_client(void)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:54:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 19:24:24 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:24:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static t_client				*init_client(int const sock_client,
 	ft_bzero(client, sizeof(*client));
 	client->sock_client = sock_client;
 	client->sock_server = sock_server;
-	if (set_list_cwd(&client->cwd_server, "/", client->cwd_server.cwd_show) != 0)
+	if (set_list_cwd(&client->cwd_server, "/", client->cwd_server.cwd_show) !=
+			0)
 		return (NULL);
 	if (getcwd(client->racine, SIZE_CWD) == NULL)
 		return (NULL);

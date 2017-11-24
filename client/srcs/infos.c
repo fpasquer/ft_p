@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 07:31:40 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/08 07:58:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:46:05 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int							add_infos(char const *str)
 	{
 		while (++i <= gen->i_last_infos)
 			ft_strncpy(gen->last_infos[i - 1], gen->last_infos[i],
-					SCR_COL_MIN -2);
+					SCR_COL_MIN - 2);
 		gen->i_last_infos--;
 	}
-	ft_strncpy(gen->last_infos[gen->i_last_infos++], str, SCR_COL_MIN -2);
+	ft_strncpy(gen->last_infos[gen->i_last_infos++], str, SCR_COL_MIN - 2);
 	return (0);
 }
 

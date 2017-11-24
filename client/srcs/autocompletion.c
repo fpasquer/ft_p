@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 08:52:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/21 08:16:24 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:48:11 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int					autocomplet_word(t_gen *gen, char const *word)
 	return (0);
 }
 
-static int					autocompletion_exe(t_gen *gen, char const
-		**list_rep, char const *cmd)
+static int					autocompletion_exe(t_gen *gen,
+		char const **list_rep, char const *cmd)
 {
 	char					**list;
 	int						ret;
@@ -79,7 +79,7 @@ static int					check_autocompletion_bin(char const *cmd)
 	unsigned int			i;
 
 	if (cmd == NULL)
-		return  (-1);
+		return (-1);
 	i = 0;
 	while (ft_isspace(cmd[i]))
 		i++;
@@ -90,8 +90,8 @@ static int					check_autocompletion_bin(char const *cmd)
 
 int							autocompletion(void)
 {
-	char const 				*list_cmd[] = {"CD", "GET", "LOGIN", "LOGOUT",
- 		"LS", "PUT", "PWD", "QUIT", NULL};
+	char const				*list_cmd[] = {"CD", "GET", "LS", "PUT", "PWD",
+			"QUIT", NULL};
 	char					*cmd;
 	int						ret;
 	t_gen					*gen;
@@ -109,5 +109,6 @@ int							autocompletion(void)
 	if (gen->win == SERVER)
 		return (autocompletion_exe(gen, (char const **)gen->cwd_server.list,
 				cmd));
-	return (autocompletion_exe(gen, (char const **)gen->cwd_client.list, cmd));
+		return (autocompletion_exe(gen, (char const **)gen->cwd_client.list,
+				cmd));
 }

@@ -6,13 +6,11 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:51:17 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 13:13:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:29:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../general_incs/general.h"
-
-# define BUFF_SIZE_RECV 5
 
 static size_t				get_size_tab(char **list_cwd)
 {

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 11:22:26 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 08:33:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ int							func_cd(void);
 int							func_get(void);
 int							func_put(void);
 int							func_pwd(void);
-int							func_login(void);
-int							func_logout(void);
 int							func_refresh_client(void);
 int							func_refresh_server(void);
 int							func_win_up(void);
