@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 10:09:02 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 13:41:48 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 09:06:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 **		-1 si il y a un Erreur
 */
 
-int							ft_scandir(char *path, char ***list, bool const slash)
+int							ft_scandir(char *path, char ***list,
+		bool const slash)
 {
 	char					*tmp;
 	int						ret;
