@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:56:46 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/18 15:42:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:48:55 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ void						del_general(int const ret)
 	del_list_cwd(gen->cwd_client);
 	del_list_cwd(gen->cwd_server);
 	del_ncurses(gen);
+	if (ret == -2)
+		printf("Operation timed out\n");
 	ft_memdel((void**)&gen);
-#ifdef DEBUG
-	fclose(debug);
-#endif
 	exit(ret);
 }

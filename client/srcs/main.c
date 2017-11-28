@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:31:23 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:48:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int							main(int argc, char **argv)
 {
 	t_gen					*gen;
 
-#ifdef DEBUG
-	debug = fopen("debug.txt", "w+");
-#endif
 	if (argc <= 2)
 		need_param(argv[0]);
 	if ((gen = get_general(ft_memalloc(sizeof(*gen)))) == NULL || check_port(

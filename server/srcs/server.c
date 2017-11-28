@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:27:03 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:14:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:50:50 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 static int					config_server(t_gen *gen,
 		struct addrinfo const node)
 {
-	int						optval;
-
 	if (gen == NULL)
 		return (-1);
 	if ((gen->sock_server = socket(node.ai_family, node.ai_socktype,
 			node.ai_protocol)) < 0)
 		return (-1);
-	if (node.ai_family == AF_INET6)
-		if (setsockopt(gen->sock_server, IPPROTO_IPV6, IPV6_V6ONLY, &optval,
-				sizeof(optval)) == -1)
-			return (-1);
 	if (bind(gen->sock_server, node.ai_addr, node.ai_addrlen) == -1)
 		return (-1);
 	return (true);
@@ -51,7 +45,7 @@ int							init_server(char const *port)
 		return (-1);
 	if (ft_strncpy(gen->port, port, MAX_LEN_PORT) != gen->port)
 		return (-1);
-	gen->hints.ai_family = AF_INET6;
+	gen->hints.ai_family = AF_UNSPEC;
 	gen->hints.ai_socktype = SOCK_STREAM;
 	gen->hints.ai_flags = AI_PASSIVE;
 	if ((ret = getaddrinfo(NULL, gen->port, &gen->hints, &gen->ptr)) != 0)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 08:26:34 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:28:09 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 17:15:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int					check_cd(char const *racine, char *current_dir,
 
 	if (racine == NULL || getcwd(buff, SIZE_CWD) != buff)
 		return (-1);
-	if (strstr(buff, racine) == buff)
+	if (ft_strstr(buff, racine) == buff)
 		return (true);
 	if (chdir(racine) != 0 || ft_strncpy(current_dir, "/", size_current_dir)
 			!= current_dir)

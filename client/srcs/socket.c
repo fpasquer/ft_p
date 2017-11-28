@@ -6,11 +6,17 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 08:05:54 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:36:55 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:49:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/client.h"
+
+static int					error_time_out(void)
+{
+	del_general(-1);
+	return (-1);
+}
 
 static int					login_server_ipv4(t_gen *gen)
 {
@@ -27,7 +33,7 @@ static int					login_server_ipv4(t_gen *gen)
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(ft_atoi(gen->i_client.port));
 	if (connect(gen->i_client.fd, (struct sockaddr*)&sin, sizeof(sin)) == -1)
-		return (-1);
+		return (error_time_out());
 	return (0);
 }
 
@@ -40,12 +46,12 @@ static int					login_server_ipv6(t_gen *gen)
 	ft_bzero(&sin, sizeof(sin));
 	if ((gen->i_client.fd = socket(PF_INET6, SOCK_STREAM, 0)) < 0)
 		return (-1);
-	if (inet_pton(AF_INET6, "::1", &sin.sin6_addr) != 1)
+	if (inet_pton(AF_INET6, gen->i_client.ip, &sin.sin6_addr) != 1)
 		return (-1);
 	sin.sin6_family = AF_INET6;
 	sin.sin6_port = htons((short)ft_atoi(gen->i_client.port));
 	if (connect(gen->i_client.fd, (struct sockaddr*)&sin, sizeof(sin)) == -1)
-		return (-1);
+		return (error_time_out());
 	return (0);
 }
 

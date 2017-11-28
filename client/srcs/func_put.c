@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 08:54:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 11:12:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:33:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,6 @@ static int					error_put(char const *error)
 		if (add_infos(error) != 0 || print_infos() != 0)
 			return (-1);
 	return (0);
-}
-
-// static int					cmd_for_server(int const fd, char *cmd)
-// {
-// 	int						ret;
-// 	char					*info;
-
-// 	if (fd <= 0 || cmd == NULL)
-// 		return (-1);
-// 	if (send_tab(fd, cmd) < 0 || (info = get_tab(fd)) == NULL)
-// 		return (-1);
-// 	if (add_infos(info) != 0)
-// 		return (-1);
-// 	ret = ft_strcmp(info, "PUT success");
-// 	ft_memdel((void**)&info);
-// 	return (ret == 0 ? 0 : 1);
-// }
-
-void						print_memory(void *addr, size_t len)
-{
-	unsigned char			*tmp;
-	size_t					i;
-
-	i = 0;
-	tmp = (unsigned char *)addr;
-	while (i < len)
-	{
-		fprintf(debug, "%p = %c = %d\n", tmp + i, ft_isprint((int)tmp[i]) == true ? tmp[i] : '.', tmp[i]);
-		i++;
-	}
 }
 
 static int					send_file_to_server(t_gen *gen, t_data_file *file)
@@ -100,7 +70,7 @@ int							func_put(void)
 	int						type;
 	unsigned int			i;
 	t_gen					*gen;
-	
+
 	if ((gen = get_general(NULL)) == NULL)
 		return (-1);
 	if ((list_files = ft_strsplit(&gen->cmd[4], ' ')) == NULL)

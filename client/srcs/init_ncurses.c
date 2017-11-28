@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:24:06 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:45:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:01:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ t_ncurses					init_ncurses(void)
 	ft_bzero(&scr, sizeof(scr));
 	if (init_windows(&scr) != 0)
 		show_str_ncurses("Error init_windows");
-	curs_set(false);
 	return (scr);
 }
 

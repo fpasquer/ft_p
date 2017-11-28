@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 10:09:02 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 09:06:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 17:41:23 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int							ft_scandir(char *path, char ***list,
 	struct dirent			*str_dirent;
 
 	if (path == NULL || list == NULL || ft_is_dir(path) <= 0 ||
-			access(path, F_OK | R_OK | X_OK) != 0 ||
 			(direct = opendir(path)) == NULL)
 		return (-1);
 	ret = 0;

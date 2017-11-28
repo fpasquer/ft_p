@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 09:29:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:28:17 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,26 @@
 typedef struct				s_gen
 {
 	char					port[MAX_LEN_PORT];
-											//port d'ecoute du server
-	int						sock_server;	//fd de socket server
-	struct addrinfo			hints;			//pour parametrer le server
-	struct addrinfo			*ptr;			//pointeur du debut de la liste
+	int						sock_server;
+	struct addrinfo			hints;
+	struct addrinfo			*ptr;
 
 }							t_gen;
 
 typedef struct				s_client
 {
-	char					*cmd;			//cmd qui vient du client
+	char					*cmd;
 	char					racine[SIZE_CWD];
-											//path racine server
 	char					current_dir[SIZE_CWD];
-											//path de la position dans le server
-	int						sock_server;	//fd de socket server
-	int						sock_client;	//fd de socket client
-	t_list_cwd				cwd_server;		//liste fichiers du server
+	int						sock_server;
+	int						sock_client;
+	t_list_cwd				cwd_server;
 }							t_client;
 
 /*
 **	general
 */
-t_gen 						*get_general(t_gen *gen);
+t_gen						*get_general(t_gen *gen);
 int							del_general(int const ret);
 
 /*

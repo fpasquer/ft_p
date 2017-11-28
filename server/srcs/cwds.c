@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 16:16:38 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 11:10:53 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/24 11:25:03 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,49 +23,6 @@ int							func_ls(void)
 	printf("%s %d %s\n", __FILE__, __LINE__, __FUNCTION__);
 	ft_memdel((void**)&gen->cmd);
 	return (0);
-}
-
-void						print_memory(void *addr, size_t len)
-{
-	unsigned char			*tmp;
-	size_t					i;
-
-	i = 0;
-	tmp = (unsigned char *)addr;
-	while (i < len)
-	{
-		printf("%p = %c = %d\n", tmp + i, ft_isprint((int)tmp[i]) == true ? tmp[i] : '.', tmp[i]);
-		i++;
-	}
-} 
-
-static int					execute_put(int const sock)
-{
-	t_data_file				file;
-
-	if (recv(sock, &file.size_datas, sizeof(file.size_datas), 0) < 0)
-		return (send_tab(sock, "PUT failure size datas"));
-	printf("User[%3d] size %zu\n", sock, file.size_datas);
-	if ((file.datas = ft_memalloc(file.size_datas)) == NULL)
-	 	return (send_tab(sock, "PUT malloc failure"));
-	if (recv(sock, file.datas, file.size_datas, 0) < 0)
-	 	return (send_tab(sock, "PUT failure datas"));
-	if (creat_file(file.datas, NULL) != 0)
-		return (send_tab(sock, "PUT failure Creat file"));
-	ft_memdel((void**)&file.datas);
-	return (send_tab(sock, "PUT success"));
-}
-
-int							func_put(void)
-{
-	int						ret;
-	t_client				*gen;
-
-	if ((gen = get_client(NULL)) == NULL || gen->sock_client <= 0)
-		return (-1);
-	ret = execute_put(gen->sock_client);
-	ft_memdel((void**)&gen->cmd);
-	return (ret);
 }
 
 int							func_pwd(void)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:27:29 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:33:57 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 08:48:34 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ typedef struct				s_cmd_list
 
 typedef struct				s_info_client
 {
-	int						fd;				//fd de la socker
-	char					*port;			//port d'ecoute
-	char					*ip;			//adresse ip
-	t_type_ip				type_ip;		//IPV4 ou IPV6
-	t_cmd_list				*list_cmd;		//liste chaine des cmds / ret server
+	int						fd;
+	char					*port;
+	char					*ip;
+	t_type_ip				type_ip;
+	t_cmd_list				*list_cmd;
 }							t_info_client;
 
 typedef enum				e_win
 {
-	CLIENT, SERVER							//liste des fenetres possible de changer
+	CLIENT, SERVER
 }							t_win;
 
 typedef struct				s_color_ncurses
@@ -54,16 +54,16 @@ typedef struct				s_color_ncurses
 
 typedef struct				s_ncurses
 {
-	WINDOW					*infos;			//fenetre info
-	WINDOW					*client;		//fenetre client
-	WINDOW					*server;		//fenetre server
-	WINDOW					*term;			//fenetre term
+	WINDOW					*infos;
+	WINDOW					*client;
+	WINDOW					*server;
+	WINDOW					*term;
 }							t_ncurses;
 
 typedef struct				s_lines
 {
 	char					*cmd;
-	char 					*result;
+	char					*result;
 	size_t					len_cmd;
 	size_t					len_result;
 	struct s_lines			*next;
@@ -71,18 +71,16 @@ typedef struct				s_lines
 
 typedef struct				s_gen
 {
-	char					cmd[SIZE_CMD];	//commandes tapee dans le shell
+	char					cmd[SIZE_CMD];
 	char					last_infos[HIGHT_INFO_WIN - 2][SCR_COL_MIN - 2];
-											//Tableau pour stoker les infos
 	char					ip[INET6_ADDRSTRLEN];
-											//ip en format string
-	int						i_last_infos;	//index de last_infos
-	size_t					len_cmd;		//longueur de la commande
-	t_info_client			i_client;		//info sur le client
-	t_ncurses				scr;			//ensembles des fenetres
-	t_list_cwd				cwd_client;		//liste fichiers du client
-	t_list_cwd				cwd_server;		//liste fichiers du serveur
-	t_win					win;			//pour savoir dans quelle fenetre j'execute les commandes
+	int						i_last_infos;
+	size_t					len_cmd;
+	t_info_client			i_client;
+	t_ncurses				scr;
+	t_list_cwd				cwd_client;
+	t_list_cwd				cwd_server;
+	t_win					win;
 }							t_gen;
 
 void						loop_client(t_ncurses scr);
@@ -162,6 +160,6 @@ int							autocompletion(void);
 /*
 **	save_ret_cmd
 */
-int							save_ret_server(t_cmd_list *node, char  **list);
+int							save_ret_server(t_cmd_list *node, char **list);
 
 #endif

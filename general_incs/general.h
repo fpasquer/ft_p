@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 17:22:36 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 11:01:34 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 09:00:36 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,15 @@
 # define TYPE_FOLDER 1
 # define TYPE_FILE 2
 
-# ifdef DEBUG
-	FILE					*debug;
-# endif
-
 typedef struct				s_data_file
 {
-	char					*datas;			//ligne complete envoye au client
-	char					*name;			//name du fichier
-	char					*file_content;	//contenue du fihier
-	int						fd;				//de open
-	size_t					len_name;		//longueur de name
-	size_t					size_file;		//size_du fichier
-	size_t					size_datas;		//size_datas
+	char					*datas;
+	char					*name;
+	char					*file_content;
+	int						fd;
+	size_t					len_name;
+	size_t					size_file;
+	size_t					size_datas;
 }							t_data_file;
 
 typedef struct				s_sig_func
@@ -123,8 +119,6 @@ void						del_list_cwd(t_list_cwd cwd);
 char						*get_ip(char const *ip, t_type_ip *type_ip);
 int							check_ip(char const *ip);
 bool						check_port(char const *port);
-int							ipv4_mapped_ipv6(char const *ipv4, char *dest,
-		size_t const size_dest);
 
 /*
 **	send_get_data

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/02 19:11:49 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/22 11:28:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/11/28 09:00:25 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 char						*get_ip(char const *ip, t_type_ip *type_ip)
 {
-	char					tmp[INET6_ADDRSTRLEN];
-
 	if (ip == NULL || type_ip == NULL)
 		return (NULL);
 	if (ft_strcmp("localhost", ip) == 0)
@@ -28,13 +26,6 @@ char						*get_ip(char const *ip, t_type_ip *type_ip)
 	}
 	if (((*type_ip) = check_ip(ip)) == false)
 		return (NULL);
-	if ((*type_ip) == AF_INET)
-	{
-		if (ipv4_mapped_ipv6(ip, tmp, INET6_ADDRSTRLEN) != 0)
-			return (NULL);
-		(*type_ip) = AF_INET6;
-		return (ft_strdup(tmp));
-	}
 	return (ft_strdup(ip));
 }
 
@@ -61,17 +52,4 @@ bool						check_port(char const *port)
 	if ((port_int = ft_atoi(port)) > MAX_PORT || port_int < MIN_PORT)
 		return (false);
 	return (true);
-}
-
-int							ipv4_mapped_ipv6(char const *ipv4, char *dest,
-		size_t const size_dest)
-{
-	if (ipv4 == NULL || dest == NULL || size_dest < INET6_ADDRSTRLEN)
-		return (-1);
-	ft_bzero(dest, size_dest);
-	if (ft_strncat(dest, "::ffff:", size_dest) != dest)
-		return (-1);
-	if (ft_strncat(dest, ipv4, size_dest) != dest)
-		return (-1);
-	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/22 11:05:13 by florian           #+#    #+#              #
-#    Updated: 2017/11/24 08:06:37 by fpasquer         ###   ########.fr        #
+#    Updated: 2017/11/28 08:50:20 by fpasquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ All : $(NAME)
 
 $(NAME) : $(LIBRARY) $(OBJDIR) $(OBJ)
 	make -C client client
-	make -C server server
+	make -C server serveur
 
 client : $(LIBRARY) $(OBJDIR) $(OBJ)
 	make -C client client
