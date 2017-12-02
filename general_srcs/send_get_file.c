@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 08:03:11 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 10:49:20 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/12/02 17:37:20 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int							creat_file(void *datas, int (f)(void))
 	size_file = (*(size_t *)datas);
 	datas += sizeof(size_file);
 	file_content = (char *)datas;
-	if ((fd = ft_fopen(name, "w+")) <= 0 || write(fd, file_content, size_file)
-			!= (ssize_t)size_file)
+	if (ft_is_dir(name) == true || (fd = ft_fopen(name, "w+")) <= 0 ||
+			write(fd, file_content, size_file) != (ssize_t)size_file)
 	{
 		ft_memdel((void**)&name);
 		return (-1);
