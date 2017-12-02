@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 08:52:07 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:48:11 by fpasquer         ###   ########.fr       */
+/*   Created: 2017/12/02 16:50:27 by fpasquer          #+#    #+#             */
+/*   Updated: 2017/12/02 16:50:44 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int					autocomplet_word(t_gen *gen, char const *word)
 	return (0);
 }
 
-static int					autocompletion_exe(t_gen *gen,
-		char const **list_rep, char const *cmd)
+static int					autocompletion_exe(t_gen *gen, char **list_rep,
+		char const *cmd)
 {
 	char					**list;
 	int						ret;
@@ -105,10 +105,14 @@ int							autocompletion(void)
 	if ((ret = check_autocompletion_bin(gen->cmd)) < 0)
 		return (-1);
 	if (ret == true)
-		return (autocompletion_exe(gen, list_cmd, cmd));
-	if (gen->win == SERVER)
-		return (autocompletion_exe(gen, (char const **)gen->cwd_server.list,
-				cmd));
-		return (autocompletion_exe(gen, (char const **)gen->cwd_client.list,
-				cmd));
+		return (autocompletion_exe(gen, (char **)list_cmd, cmd));
+	ret = 0;
+	while (ft_isspace(gen->cmd[ret]))
+		ret++;
+	if (ft_strncmp(&gen->cmd[ret], "PUT ", 4) == 0)
+		return (autocompletion_exe(gen, gen->cwd_client.list, cmd));
+	else if (ft_strncmp(&gen->cmd[ret], "GET ", 4) == 0)
+		return (autocompletion_exe(gen, gen->cwd_server.list, cmd));
+	return (autocompletion_exe(gen, gen->win == SERVER ? gen->cwd_server.list :
+			gen->cwd_client.list, cmd));
 }

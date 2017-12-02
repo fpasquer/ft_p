@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 12:43:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2017/11/24 08:34:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2017/12/02 16:49:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int							get_cmd(char cmd[SIZE_CMD], size_t *i,
 int							send_exec_cmd(t_gen *gen)
 {
 	unsigned int			i;
-	char					*info;
 
 	if (gen == NULL || gen->cmd[0] == '\0')
 		return (gen == NULL ? -1 : 0);
@@ -113,12 +112,8 @@ int							send_exec_cmd(t_gen *gen)
 			return (g_cmds[i].f());
 		i++;
 	}
-	if (send_tab(gen->i_client.fd, gen->cmd) < 0 || (info =
-			get_tab(gen->i_client.fd)) == NULL)
+	if (add_infos("ft_p command NOT found") != 0)
 		del_general(EXIT_FAILURE);
-	if (add_infos(info) != 0)
-		del_general(EXIT_FAILURE);
-	ft_memdel((void**)&info);
 	return (0);
 }
 
